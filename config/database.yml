@@ -17,6 +17,7 @@ default: &default
   password: laila3715
   host: localhost
 
+
 development:
   <<: *default
   database: nexttelecom_dev
@@ -48,7 +49,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: nexttelecom_production
-  username: nexttelecom
-  password: <%= ENV['NEXTTELECOM_DATABASE_PASSWORD'] %>
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  #database: nexttelecom_prod
+  host: us-cdbr-iron-east-01.cleardb.net
+  database: heroku_15d7472ff40c4ea
+  username: b77b44e6fa6f1f
+  password: 77dec673

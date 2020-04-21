@@ -9,7 +9,7 @@ module Button
 
     #Actions
     NEW =   ".new"
-    CANCEL =".cancel"
+    CANCEL = ".cancel"
     EDIT =  ".edit"
     BACK =  ".back"
     DESTROY = ".destroy"
