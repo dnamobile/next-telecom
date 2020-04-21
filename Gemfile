@@ -7,7 +7,6 @@ ruby '2.6.6'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4'
-
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -26,7 +25,7 @@ gem "paperclip", "~> 6.0.0"
 gem 'devise'
 # Object mockup
 gem 'faker'
-
+# search pack
 gem 'ransack'
 
 # The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web. https://getbootstrap.com
