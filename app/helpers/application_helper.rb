@@ -66,7 +66,7 @@ module ApplicationHelper
     def delete(size, path)
         label = I18n.t(Button::DESTROY, :default => I18n.t("#{Path::HELPERS_LINKS}#{Button::DESTROY}"))
         
-        data = I18n.t(CONFIRM, 
+        data = I18n.t(Button::CONFIRM, 
                 :default => I18n.t("#{Path::HELPERS_LINKS}#{Button::CONFIRM}", 
                 :default => "Are you sure?"))
         
