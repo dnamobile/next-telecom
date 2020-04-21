@@ -1,0 +1,20 @@
+<%= search_form_for(@q, :class => "form-horizontal cidade") do |f| %>
+  <div class="form-group">
+    <%= f.label(:nome, "Nome", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:nome_cont, placeholder: 'Nome contém...', :class => 'form-control') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:estado_nome_cont, "Estado", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:estado_nome_cont, placeholder: 'Estado contém...', :class => 'form-control') %>  
+      
+      <br/>
+
+      <%= f.submit(:class => 'btn btn-default') %>
+      <%= new_button($model_class) %>
+    </div>  
+  </div>
+<% end %>

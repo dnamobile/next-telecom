@@ -1,0 +1,54 @@
+<%= form_for @ref, :html => { :class => "form-horizontal local" } do |f| %>
+
+  <%= render :partial => '/layouts/message_box' %>
+
+  <div class="form-group">
+    <%= f.label :nome, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :nome, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:nome) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :atividade, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.select("atividade", atividades, {include_blank: "Selecione"}) %>
+
+    </div>
+    <%=f.error_span(:atividade) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :endereco, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.collection_select(:endereco_id, enderecos, :id, :to_s, include_blank: "Selecione") %>
+    </div>
+    <%= f.error_span(:endereco) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :qtde_blocos, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.number_field :qtde_blocos, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:qtde_blocos) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :qtde_lotes, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.number_field :qtde_lotes, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:qtde_lotes) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                locals_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

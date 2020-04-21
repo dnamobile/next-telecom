@@ -1,0 +1,16 @@
+ <% if @ref.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= pluralize(@ref.errors.count, "erro") %> ao salvar <%= @model_class %>:
+        </h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @ref.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>

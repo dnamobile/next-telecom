@@ -1,0 +1,31 @@
+<hr/><h3><%=t '.title', :default => 'Locais' %></h3>
+
+<div class="table-responsive-sm">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th><%= "Nome" %></th>
+            <th><%= "Atividade" %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if !@ref.locals.blank? %>
+            <% @ref.locals.each do |local| %>
+                <tr>
+                    <td><%= link_to local.nome, local_path(local) %></td>
+                    <td><%= local.atividade %></td>
+                    <td><%= link_to local.endereco, endereco_path(local.endereco) %></td>
+                </tr>
+            <% end %>
+        <% else %>
+            <tr>
+                <td>
+                    <dl class="dl-horizontal">
+                    <br/><dt><dd>Nenhum Local encontrado.</dd></dt>
+                    </dl>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

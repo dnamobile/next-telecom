@@ -1,0 +1,40 @@
+<hr/>
+<h3><%=t '.title', :default => "Estados" %></h3>
+
+<div class="table-responsive-sm">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% if !@ref.blank? %>
+          <th><%= @model_class.human_attribute_name(:nome) %></th>
+          <th><%= @model_class.human_attribute_name(:UF) %></th>
+        <% else %>
+            <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:nome)) %></th>
+            <th><%= sort_link(@q, :uf, @model_class.human_attribute_name(:UF)) %></th>
+            <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+        <% @list.each do |item| %>    
+          <tr>
+              <td><%= link_to item.nome, show_path(item) %></td>
+              <td><%= item.uf %></td>
+              
+              <% if @ref.blank? %>
+                <td>
+                  <%= edit_button_sm(item) %>
+                  <%= delete_button_sm(item) %>
+                </td>
+              <% end %>
+          </tr>
+        <% end %>
+        <% if @list.blank? %>
+          <tr>
+            <td><center>Nenhum item encontrado.</center></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>

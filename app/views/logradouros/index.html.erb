@@ -1,0 +1,73 @@
+<%- model_class = Logradouro -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div> 
+
+<%= search_form_for(@q, :class => "form-horizontal logradouro") do |f| %>
+  <div class="form-group">
+    <%= f.label(:cep_or_nome_cont, "CEP ou Nome", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-6">  
+      <%= f.search_field(:cep_or_nome_cont, placeholder: 'CEP ou Nome contém...', :class => 'form-control') %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label(:bairro_nome_cont, "Bairro", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:bairro_nome_cont, placeholder: 'Bairro contém...', :class => 'form-control') %>  
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:cidade_nome_cont, "Cidade", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:cidade_nome_cont, placeholder: 'Cidade contém...', :class => 'form-control') %>
+      
+      <br/>
+
+      <%= f.submit(:class => 'btn btn-default') %>
+      <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_logradouro_path,
+                :class => 'btn btn-primary' %>
+    </div>  
+  </div>
+<% end %>
+<hr/>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :cep, "CEP") %></th>
+      <th><%= sort_link(@q, :cidade_nome, "Cidade") %></th>
+      <th><%= sort_link(@q, :bairro_nome, "Bairro") %></th>
+      <th><%= sort_link(@q, :nome, "Nome") %></th>
+      <th><%= model_class.human_attribute_name(:inicio) %></th>
+      <th><%= model_class.human_attribute_name(:fim) %></th>
+      <th><%= model_class.human_attribute_name(:lado) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @list.each do |logradouro| %>
+      <tr>
+        <td><%= link_to logradouro.cep, logradouro_path(logradouro) %></td>
+        <td><%= link_to logradouro.cidade.nome, cidade_path(logradouro.cidade) %></td>
+        <td><%= link_to logradouro.bairro.nome, bairro_path(logradouro.bairro) %></td>
+        <td><%= logradouro.nome %></td>
+        <td><%= logradouro.inicio %></td>
+        <td><%= logradouro.fim %></td>
+        <td><%= logradouro.lado %></td>
+
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_logradouro_path(logradouro), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      logradouro_path(logradouro),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

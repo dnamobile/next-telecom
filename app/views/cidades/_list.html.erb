@@ -1,0 +1,49 @@
+<hr/><h3><%=t '.title', :default => 'Cidades' %></h3>
+
+<div class="table-responsive-sm">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% if !@ref.blank? %>
+          <th><%= @model_class.human_attribute_name(:nome) %></th>
+          <th><%= @model_class.human_attribute_name(:estado) %></th>
+        <% else %>
+          <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:nome)) %></th>
+          <th><%= sort_link(@q, :estado_nome, @model_class.human_attribute_name(:estado)) %></th>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+        <% @list.each do |item| %>
+          <tr>
+            <td>
+              <%= link_to item.nome, show_path(item), remote: true %>
+              <div id="cidade_details" style="display:none">
+                  <% if item.blank? %>
+                    <%= render :partial => 'cidades/show_fields' %>
+                  <% end %>
+              </div>
+            </td>
+            <td><%= link_to item.estado.nome, show_path(item.estado) %></td>
+
+            <% if @ref.blank? %>
+              <td>
+                <%= edit_button_sm(item) %>
+                <%= delete_button_sm(item) %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>      
+      <% if @list.blank? %> 
+        <tr>
+          <td>
+            <dl class="dl-horizontal">
+              <br/><dt><dd>Nenhuma Cidade encontrada.</dd></dt>
+            </dl>
+          </td>
+        </tr>
+      <% end %>   
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,34 @@
+<dl class="dl-horizontal">
+  <dt><strong><%= "CEP" %>:</strong></dt>
+  <dd><%= @ref.cep %></dd>
+ </dl> 
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Nome" %>:</strong></dt>
+  <dd><%= @ref.nome %></dd>
+</dl>
+
+<dl class="dl-horizontal">  
+  <dt><strong><%= "Bairro" %>:</strong></dt>
+  <dd><%= link_to @ref.bairro.nome, bairro_path(@ref.bairro) %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Cidade" %>:</strong></dt>
+  <dd><%= link_to @ref.cidade.nome, cidade_path(@ref.cidade) %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Início" %>:</strong></dt>
+  <dd><%= @ref.inicio %></dd>
+</dl>
+  
+<dl class="dl-horizontal">
+  <dt><strong><%= "Fim" %>:</strong></dt>
+  <dd><%= @ref.fim %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Lado" %>:</strong></dt>
+  <dd><%= @ref.lado %></dd>
+</dl>

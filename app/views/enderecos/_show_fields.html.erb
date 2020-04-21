@@ -1,0 +1,36 @@
+<dl class="dl-horizontal">
+  <dt><strong><%= "Logradouro" %>:</strong></dt>
+  <dd><%= link_to @ref.logradouro, logradouro_path(@ref.logradouro) %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Número" %>:</strong></dt>
+  <dd><%= @ref.numero %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Complemento" %>:</strong></dt>
+  <dd><%= @ref.complemento %></dd>
+</dl>
+
+<hr/><h3><%=t '.title', :default => 'Local' %></h3>
+
+<% if @ref.local.blank? %>
+    
+    <dl class="dl-horizontal">
+      <dt><strong><dd>Nenhum local cadastrado</dd></strong></dt>
+    </dl>
+
+<% else %>
+ 
+  <dl class="dl-horizontal">
+    <dt><strong><%= "Nome" %>:</strong></dt>
+      <dd><%= link_to @ref.nome_local, local_path(@ref.local) %></dd>
+  </dl>
+
+  <dl class="dl-horizontal">
+    <dt><strong><%= "Atividade" %>:</strong></dt>
+    <dd><%= @ref.atividade_local %></dd>
+  </dl>
+  
+<% end %>

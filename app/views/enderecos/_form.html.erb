@@ -1,0 +1,62 @@
+<%= form_for @ref, :html => { :class => "form-horizontal endereco" } do |f| %>
+
+  <%= render :partial => '/layouts/message_box' %>
+
+  <div class="form-group">
+    <%= f.label :logradouro, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.collection_select(:logradouro_id, logradouros, :id, :to_s, include_blank: "Selecione") %>
+    </div>
+    <%= f.error_span(:logradouro) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :numero, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.number_field :numero, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:numero) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :complemento, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.text_field :complemento, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:complemento) %>
+  </div>
+
+  <hr/><h3><%=t '.title', :default => 'Local' %></h3>
+
+  <%= f.fields_for :local do |fl| %>
+
+    <div class="form-group">
+      <%= fl.label :nome, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-4">
+        <%= fl.text_field :nome, :class => 'form-control' %>
+      </div>
+      <%=fl.error_span(:nome) %>
+    </div>
+    
+    <div class="form-group">
+      <%= fl.label :atividade, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-6">
+        <%= fl.select("atividade", atividades, {include_blank: "Selecione"}) %>
+
+      </div>
+      <%=fl.error_span(:atividade) %>
+    </div>
+
+  <% end %>
+    
+  <br/>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                enderecos_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

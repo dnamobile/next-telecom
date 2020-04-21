@@ -1,0 +1,19 @@
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:endereco) %>:</strong></dt>
+  <dd><%= link_to @ref.endereco, endereco_path(@ref.endereco) %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:vivo) %>:</strong></dt>
+  <dd><%= @ref.vivo %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:net) %>:</strong></dt>
+  <dd><%= @ref.net %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:oi) %>:</strong></dt>
+  <dd><%= @ref.oi %></dd>
+</dl>

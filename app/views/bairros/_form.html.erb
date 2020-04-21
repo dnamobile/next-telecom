@@ -1,0 +1,69 @@
+<%= form_for @ref, :html => { :class => "form-horizontal bairro" } do |f| %>
+
+  <%= render :partial => '/layouts/message_box' %>
+
+  <div class="form-group">
+    <%= f.label :cidade, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.collection_select(:cidade_id, cidades, :id, :nome, include_blank: "Selecione") %>
+    </div>
+    <%= f.error_span(:cidade) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :zona, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.select("zona", zonas,{include_blank: "Selecione"}) %>
+    </div>
+    <%=f.error_span(:zona) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :nome, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.text_field :nome, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:nome) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :qtde_habitantes, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.number_field :qtde_habitantes, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:qtde_habitantes) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :qtde_domicilios, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.number_field :qtde_domicilios, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:qtde_domicilios) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :qtde_empresas, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.number_field :qtde_empresas, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:qtde_empresas) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :renda_media, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.number_field :renda_media, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:renda_media) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-6">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                bairros_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

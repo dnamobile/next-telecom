@@ -1,0 +1,24 @@
+<dl class="dl-horizontal">
+  <dt><strong><%= "Nome" %>:</strong></dt>
+  <dd><%= @ref.nome %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Atividade" %>:</strong></dt>
+  <dd><%= @ref.atividade %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Endereço" %>:</strong></dt>
+  <dd><%= link_to @ref.endereco, endereco_path(@ref.endereco) %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Qtde Blocos" %>:</strong></dt>
+  <dd><%= @ref.qtde_blocos %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= "Qtde Lotes" %>:</strong></dt>
+  <dd><%= @ref.qtde_lotes %></dd>
+</dl>

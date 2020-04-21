@@ -1,0 +1,9 @@
+<div class="page-header">
+  <h1> Consultar Cobertura </h1>
+</div>
+
+<%= render :partial => '/coberturas/form_search' %>
+
+<% if !@list.blank? %>
+    <%= render :partial => '/coberturas/list' %>
+<% end %>

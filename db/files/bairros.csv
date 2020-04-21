@@ -1,0 +1,125 @@
+zona;nome;habitantes;domicilios;empresas;renda media
+Leste;Santana;;;;
+Leste;Fátima;8349;2252;888;6000
+Leste;Ininga;8099;2214;578;6000
+Leste;Planalto;5543;1385;143;1650
+Leste;Horto;5889;1699;350;5510
+Leste;Morada do Sol;5496;1625;341;5000
+Leste;Piçarreira;7381;2049;447;1220
+Leste;Santa Lia;2091;557;138;1160
+Leste;Campestre;4420;1278;111;1600
+Leste;Santa Isabel;6675;1979;246;4000
+Leste;Noivos;3734;1039;512;3980
+Leste;São João;8362;2216;554;2115
+Sudeste;Livramento;51;15;26;1100
+Leste;Recanto das Palmeiras;989;237;78;4000
+Sudeste;São Raimundo;777;201;21;712
+Sudeste;Beira Rio;2890;742;101;700
+Sudeste;Tancredo Neves;3374;1146;143;1600
+Sudeste;Comprida;1672;452;57;1095
+Sudeste;Extrema;5761;1539;180;1020
+Sudeste;Itararé;37443;10047;2523;1260
+Sudeste;Parque Ideal;12440;3435;510;1100
+Sudeste;Novo Horizonte;10711;2913;464;1020
+Sudeste;Redonda;4624;957;19;1123
+Sudeste;Renascença;12685;3485;637;1200
+Sudeste;Colorado;7062;1981;151;1000
+Sudeste;Parque Poti;4624;1255;96;910
+Sudeste;São Sebastião;11662;3311;309;1020
+Norte;Matinha;3129;860;274;1530
+Norte;Frei Serafim;2562;742;58;8000
+Norte;Ilhotas;6956;1950;364;1778
+Sul;Piçarra;3662;995;736;1900
+Norte;Cabral;3236;878;154;2040
+Norte;Marquês;3865;1071;397;2550
+Norte;Mafuá;2861;831;159;2040
+Norte;Vila Operária;3173;878;201;2282
+Norte;Pirajá;2898;;210;1663
+Norte;Acarape;3018;806;109;3510
+Norte;Matadouro;5530;1466;209;1020
+Norte;Parque Alvorada;5387;1382;192;1020
+Norte;São Joaquim;10558;2648;342;1020
+Norte;Nova Brasilia;6780;1761;125;900
+Norte;Aeroporto;7567;2078;536;1908
+Norte;Primavera;9102;2387;400;1530
+Norte;Morro da Esperança;3344;843;63;1020
+Norte;Porenquanto;2285;634;199;1153
+Sul;Cristo Rei;8474;2716;341;2400
+Sul;Vermelha;5659;1570;1029;2000
+Sul;Nossa Senhora das Graças;3964;1098;341;2010
+Sul;São Pedro;8780;2318;450;1310
+Sul;PIO XII;2395;687;198;1520
+Sul;Macaúba;5925;1675;321;2110
+Sul;Monte Castelo;10981;2861;445;1600
+Sul;Cidade Nova;3336;987;267;1850
+Sul;Redenção;3248;829;147;800
+Sul;Três Andares;12739;3191;370;1090
+Sul;Tabuleta;3271;1001;581;1310
+Sul;Morada Nova;6104;2099;280;1800
+Sul;Triunfo;249;66;60;3510
+Sul;Parque São João;2765;845;244;1300
+Sul;Santa Luzia;734;212;55;1020
+Sul;Saci;8190;2204;464;2760
+Sul;Lourival Parente;14753;3987;1022;1530
+Sul;Parque Piauí;11307;3092;1013;1720
+Sul;Bela Vista;12999;3520;455;1368
+Sul;Catarina;1771;449;82;950
+Sul;Promorar;18988;5273;791;1040
+Sul;Distrito Industrial;4780;1331;252;800
+Sul;Areias;3024;828;83;734
+Sul;Santa Cruz;4780;1331;252;800
+Sul;São Lourenço;474;135;23;510
+Sul;Parque Sul;;;249;
+Sul;Santo Antônio;21879;6088;437;836
+Sudeste;Gurupi;13724;3773;471;800
+Leste;Uruguai;4776;1416;121;1261
+Leste;Samapi;10772;2949;147;800
+Leste;Satélite;11606;2959;415;1020
+Leste;Zoobotânico;316;69;10;2720
+Leste;Porto do Centro;6805;1803;174;1020
+Leste;Vale Quem Tem;20106;5475;967;1140
+Leste;Novo Uruguai;416;112;16;910
+Leste;Verde Lar;11095;2947;131;664
+Leste;Vale do Gavião;1507;555;91;1220
+Leste;Morros;1166;332;42;1132
+Leste;Árvores Verdes;350;100;10;900
+Sul;Angelim;27743;7780;899;800
+Sul;Brasilar;2742;721;66;1020
+Sul;Parque Jacinta;1122;314;62;720
+Sul;Parque Juliana;89;24;6;1145
+Sul;Esplanada;18393;5230;536;1000
+Sul;Portal da Alegria;;;113;
+Sul;Angélica;;;;
+Sul;Pedra Miúda;;;60;
+Norte;Real Compagri;5804;1571;185;1200
+Norte;Água Mineral;12106;3083;278;1000
+Norte;Itaperu;2166;571;63;1820
+Norte;Memorare;5667;1467;273;1300
+Norte;Buenos Aires;7308;1900;379;1200
+Norte;Bom Jesus;3606;945;56;1238
+Norte;Alto Alegre;5389;1342;175;1105
+Norte;Mafrense;6492;1607;190;1020
+Norte;Poti Velho;3730;930;184;1020
+Norte;Olarias;1561;376;8;622
+Norte;São Francisco;5453;1387;1020;131
+Norte;Mocambinho;28385;7614;1197;1600
+Norte;Aroeiras;4577;1341;79;700
+Leste;Pedra Mole;5921;1571;345;900
+Leste;Cidade Jardim;213;55;12;
+Norte;Cidade Industrial;;;;
+Leste;Tabajaras;3500;1000;100;5000
+Leste;Socopo;1892;486;47;1020
+Norte;Alegre;3224;846;53;
+Norte;Parque Brasil;6492;1607;190;1020
+Norte;Santa Rosa;;;;
+Norte;Jacinta Andrade;;;118;
+Norte;Santa Maria;2196;611;593;1100
+Norte;Monte Verde;188;55;31;
+Norte;Embrapa;1006;244;10;1153
+Sudeste;Todos os Santos;1533;378;122;1096
+Sudeste;Flor do Campo;252;71;2;510
+Sudeste;Bom Princípio;2654;796;73;970
+Sudeste;Verde Cap;1612;433;9;644
+Leste;São Cristóvão;6592;1886;925;6005
+Leste;Jóquei;5967;1764;1730;10000
+Centro;Centro;12180;2456;6759;3000

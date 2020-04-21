@@ -1,0 +1,28 @@
+<%= form_for @ref, :html => { :class => "form-horizontal estado" } do |f| %>
+
+  <%= render :partial => '/layouts/message_box' %>
+
+  <div class="form-group">
+    <%= f.label :nome, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.text_field :nome, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:nome) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :uf, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.text_field :uf, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:uf) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= cancel_button(@model_class) %>
+  </div>
+</div>
+
+<% end %>

@@ -1,0 +1,46 @@
+<%= form_for @cobertura, :html => { :class => "form-horizontal endereco" } do |f| %>
+
+  <%= render :partial => '/layouts/message_box' %>
+
+  <div class="form-group">
+    <%= f.label :endereco, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-4">
+      <%= f.collection_select(:endereco_id, enderecos, :id, :to_s, include_blank: "Selecione") %>
+    </div>
+    <%= f.error_span(:endereco) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :vivo, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.number_field :vivo, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:vivo) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :net, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.number_field :net, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:net) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :oi, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.number_field :oi, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:oi) %>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                coberturas_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

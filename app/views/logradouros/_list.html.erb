@@ -1,0 +1,35 @@
+<hr/>
+<h3><%=t '.title', :default => 'Logradouros' %></h3>
+
+<div class="table-responsive-sm">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% if !@ref.blank? %>
+          <th><%= @model_class.human_attribute_name(:cep) %></th>
+          <th><%= @model_class.human_attribute_name(:nome) %></th>
+        <% else %>
+          <th><%= sort_link(@q, :cep, @model_class.human_attribute_name(:cep)) %></th>
+          <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:nome)) %></th>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+     
+      <% if !@ref.logradouros.blank? %>
+        <% @ref.logradouros.each do |log| %>
+          <tr>
+            <td><%= link_to log.cep, show_path(log) %></td>
+            <td><%= log.nome %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td><center>Nenhum(a) Logradouro encontrado(s).</center></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,36 @@
+<hr/><h3><%=t '.title', :default => 'Endereços' %></h3>
+
+<div class="table-responsive-sm">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% if !@ref.blank? %>
+          <th><%= @model_class.human_attribute_name(:numero) %></th>
+          <th><%= @model_class.human_attribute_name(:complemento) %></th>
+        <% else %>
+          <th><%= sort_link(@q, :numero, @model_class.human_attribute_name(:numero)) %></th>
+          <th><%= sort_link(@q, :complemento, @model_class.human_attribute_name(:complemento)) %></th>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if !@ref.enderecos.blank? %>
+        <% @ref.enderecos.each do |endereco| %>
+          <tr>
+            <td><%= link_to endereco.numero, endereco_path(endereco) %></td>
+            <td><%= endereco.complemento %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td>
+            <dl class="dl-horizontal">
+              <br/><dt><dd>Nenhum Endereço encontrado.</dd></dt>
+            </dl>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

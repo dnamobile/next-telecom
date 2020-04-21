@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1><%=t '.title', :default => @model_class.model_name.human.titleize %></h1>
+  <hr/>
+  <%= back_button(@model_class) %>
+  <%= edit_button(@ref) %>
+  <%= delete_button(@ref) %>
+</div>
+
+<%= render :partial => 'show_fields' %>
+
+<% @field_classes.each do |field_class| %>
+  <%= render :partial => index_path(field_class) + '/list' %>
+<% end %>
+
+<hr/>
