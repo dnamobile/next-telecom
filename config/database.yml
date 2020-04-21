@@ -53,7 +53,7 @@ production:
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: us-cdbr-iron-east-01.cleardb.net
-  database: nexttelecom_prod
-  #database: heroku_15d7472ff40c4ea
+  #database: nexttelecom_prod
+  database: heroku_15d7472ff40c4ea
   username: b77b44e6fa6f1f
   password: 77dec673
