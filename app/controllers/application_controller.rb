@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
         
         respond_to do |format|
           if @ref.save
-            format.html { redirect_to @ref, notice: "#{$model_class.model_name} criado com sucesso." }
+            format.html { redirect_to @ref, notice: "#{@model_class.model_name} criado com sucesso." }
             format.json { render :show, status: :created, location: @ref }
             format.js
           else
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     def destroy
         @ref.destroy
         respond_to do |format|
-            format.html { redirect_to path, notice: "#{$model_class.model_name} apagado com sucesso." }
+            format.html { redirect_to Path.index(@model_class.model_name), notice: "#{@model_class.model_name} apagado com sucesso." }
             format.json { head :no_content }
         end
     end
@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
     def update
         respond_to do |format|
             if @ref.update(model_params)
-                format.html { redirect_to @ref, notice: "#{$model_class.model_name} alterado com sucesso." }
+                format.html { redirect_to @ref, notice: "#{@model_class.model_name} alterado com sucesso." }
                 format.json { render :show, status: :ok, location: @ref }
             else
                 format.html { render :edit }
