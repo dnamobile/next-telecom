@@ -45,6 +45,12 @@ class ApplicationController < ActionController::Base
         end
     end
     
+    def set_model_class
+    end
+    
+    def set_field_classes
+    end
+
     def update
         respond_to do |format|
             if @ref.update(model_params)
@@ -59,15 +65,21 @@ class ApplicationController < ActionController::Base
     
     
     def set_ref
+        if @model_class != nil
         @ref = @model_class.find(params[:id])
+    end
     end
 
     def set_ransack
+        if @model_class != nil
         @q = @model_class.ransack(params[:q])
+    end
     end
     
     def set_list
+        if @q != nil
         @list = @q.result.page(params[:page])
+    end 
     end 
     
     def model_params
