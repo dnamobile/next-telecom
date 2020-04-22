@@ -33,7 +33,7 @@ gem 'ransack'
 # The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web. https://getbootstrap.com
 gem 'twitter-bootstrap-rails'
 gem 'coffee-script-source'
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+#gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 #gem "therubyracer", :platform => :ruby
 
 gem 'jquery-rails'
