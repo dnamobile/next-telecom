@@ -132,6 +132,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    pg (1.2.3-x64-mingw32)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
     public_suffix (4.0.4)
@@ -253,6 +254,7 @@ DEPENDENCIES
   jquery-rails
   mysql2 (>= 0.4.4)
   paperclip (~> 6.0.0)
+  pg
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.2)
   ransack

@@ -1,4 +1,4 @@
-module Label
+class Label
 
     HELPERS_LINKS = "helpers.links"
     

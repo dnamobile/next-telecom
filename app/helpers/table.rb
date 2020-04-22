@@ -1,4 +1,4 @@
-module Table
+class Table
 
      #com problemas... revisar depois
      def table_for(list)

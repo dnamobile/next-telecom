@@ -1,4 +1,4 @@
-module Path
+class Path
 
     HELPERS_LINKS = "helpers.links"
 

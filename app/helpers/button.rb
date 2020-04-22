@@ -1,4 +1,4 @@
-module Button  
+class Button
 
     #Types
     PRIMARY = "primary"
@@ -8,10 +8,10 @@ module Button
     XS = "btn-xs"    
 
     #Actions
-    NEW =   ".new"
+    NEW = ".new"
     CANCEL = ".cancel"
-    EDIT =  ".edit"
-    BACK =  ".back"
+    EDIT = ".edit"
+    BACK = ".back"
     DESTROY = ".destroy"
     CONFIRM = ".confirm"
 

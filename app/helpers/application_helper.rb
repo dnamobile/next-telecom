@@ -1,12 +1,8 @@
-require_relative 'components/button.rb'
-require_relative 'components/label.rb'
-require_relative 'components/path.rb'
+require 'button'
+require 'label'
+require 'path'
 
 module ApplicationHelper
-
-    include Button
-    include Path
-    include Label
 
     #Helpers for Buttons
     def new_button(model_class)
