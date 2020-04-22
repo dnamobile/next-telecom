@@ -6,7 +6,7 @@ module.exports = environment.toWebpackConfig()
 
 {
     test: /\.(scss)$/,
-    use: [{
+    use [{
       loader: 'style-loader', // inject CSS to page
     }, {
       loader: 'css-loader', // translates CSS into CommonJS modules
