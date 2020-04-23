@@ -1,7 +1,7 @@
 class CidadesController < ApplicationController
 
   def show
-    @list = @ref.bairros
+    @list = @ref.bairros.page(params[:page])
   end
 
   private

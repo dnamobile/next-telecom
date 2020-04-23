@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
     end
     
     def new
-        @ref = $model_class.new
+        @ref = @model_class.new
     end
     
     def create
-        @ref = $model_class.new(estado_params)
+        @ref = @model_class.new(estado_params)
         
         respond_to do |format|
           if @ref.save
@@ -66,20 +66,20 @@ class ApplicationController < ActionController::Base
     
     def set_ref
         if @model_class != nil
-        @ref = @model_class.find(params[:id])
-    end
+            @ref = @model_class.find(params[:id])
+        end
     end
 
     def set_ransack
         if @model_class != nil
-        @q = @model_class.ransack(params[:q])
-    end
+            @q = @model_class.ransack(params[:q])
+        end
     end
     
     def set_list
         if @q != nil
-        @list = @q.result.page(params[:page])
-    end 
+            @list = @q.result.page(params[:page])
+        end 
     end 
     
     def model_params

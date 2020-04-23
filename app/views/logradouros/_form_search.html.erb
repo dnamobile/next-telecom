@@ -1,0 +1,29 @@
+<%= search_form_for(@q, :class => "form-horizontal logradouro") do |f| %>
+  <div class="form-group">
+    <%= f.label(:cep_or_nome_cont, "CEP ou Nome", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-6">  
+      <%= f.search_field(:cep_or_nome_cont, placeholder: 'CEP ou Nome contém...', :class => 'form-control') %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label(:bairro_nome_cont, "Bairro", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:bairro_nome_cont, placeholder: 'Bairro contém...', :class => 'form-control') %>  
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:cidade_nome_cont, "Cidade", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:cidade_nome_cont, placeholder: 'Cidade contém...', :class => 'form-control') %>
+      
+      <br/>
+
+      <%= f.submit(:class => 'btn btn-default') %>
+      <%= new_button(@model_class) %>
+    </div>  
+  </div>
+<% end %>
+
+<hr/>

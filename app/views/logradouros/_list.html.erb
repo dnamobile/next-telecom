@@ -1,35 +1,51 @@
-<hr/>
-<h3><%=t '.title', :default => 'Logradouros' %></h3>
+<% if !@field_class.blank? %>
+  <h3><%=t '.title', :default => @field_class.model_name.human.pluralize.titleize %></h3>
+<% end %>
 
 <div class="table-responsive-sm">
   <table class="table table-striped">
     <thead>
       <tr>
-        <% if !@ref.blank? %>
-          <th><%= @model_class.human_attribute_name(:cep) %></th>
-          <th><%= @model_class.human_attribute_name(:nome) %></th>
-        <% else %>
+        <% if @ref.blank? %>
           <th><%= sort_link(@q, :cep, @model_class.human_attribute_name(:cep)) %></th>
           <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:nome)) %></th>
+          <th><%= sort_link(@q, :cep, @model_class.human_attribute_name(:cidade)) %></th>
+          <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:bairro)) %></th>
+          <th><%= @model_class.human_attribute_name(:inicio) %></th>
+          <th><%= @model_class.human_attribute_name(:fim) %></th>
+          <th><%= @model_class.human_attribute_name(:lado) %></th>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% else %>
+            <th><%= @model_class.human_attribute_name(:cep) %></th>
+            <th><%= @model_class.human_attribute_name(:nome) %></th>
         <% end %>
       </tr>
     </thead>
 
     <tbody>
-     
-      <% if !@ref.logradouros.blank? %>
-        <% @ref.logradouros.each do |log| %>
+        <% @list.each do |log| %>
           <tr>
             <td><%= link_to log.cep, show_path(log) %></td>
             <td><%= log.nome %></td>
+            
+            <% if @ref.blank? %>
+              <td><%= link_to log.cidade.nome, index_path(log.cidade) %></td>
+              <td><%= link_to log.bairro.nome, index_path(log.bairro) %></td>
+              <td><%= log.inicio %></td>
+              <td><%= log.fim %></td>
+              <td><%= log.lado %></td>
+              <td>
+                <%= edit_button_sm(log) %>
+                <%= delete_button_sm(log) %>
+              </td>
+            <% end %>
           </tr>
+          <% end %>
+          <% if @list.blank? %> 
+            <tr>
+              <td><center>Nenhum(a) <%= @field_class %> encontrado(s).</center></td>
+            </tr>
         <% end %>
-      <% else %>
-        <tr>
-          <td><center>Nenhum(a) Logradouro encontrado(s).</center></td>
-        </tr>
-      <% end %>
     </tbody>
   </table>
 </div>

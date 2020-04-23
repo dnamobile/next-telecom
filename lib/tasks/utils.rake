@@ -1,5 +1,8 @@
 require 'csv'
 
+#Comando para rodar a migracao no bando produção
+#rake utils:setup_logradouros RAILS_ENV=production
+
 namespace :utils do
   
   desc "Limpa os dados das tabelas do Banco"
@@ -30,6 +33,8 @@ namespace :utils do
   desc "Povoa a tabela Estados no Banco"
   task setup_estados: :environment do
     puts "> Povoando Tabela Estados..."
+    puts "#{Estado.all.size} encontrados"
+    
     CSV.foreach('tmp/estados.csv', encoding:'iso-8859-1:utf-8', col_sep: ';').with_index do |linha, indice|
       unless (indice == 0)
         nome = linha[0]
@@ -42,6 +47,8 @@ namespace :utils do
   desc "Povoa a tabela Cidades no Banco"
   task setup_cidades: :environment do
     puts "> Povoando Tabela Cidades..."
+    puts "#{Cidade.all.size} encontrados"
+
     e = Estado.find_by(uf: "PI")
     Cidade.create([
       {nome: "Teresina", estado: e},
@@ -74,6 +81,7 @@ namespace :utils do
   desc "Povoa a tabela Logradouros no Banco"
   task setup_logradouros: :environment do
     puts "> Povoando Tabela Logradouros..."
+    puts "#{Logradouro.all.size} encontrados"
     
     CSV.foreach('tmp/logradouros.csv', encoding:'iso-8859-1:utf-8', col_sep: ';').with_index do |linha, indice|
       unless (indice == 0)
@@ -99,12 +107,12 @@ namespace :utils do
         end
 
         #buscando logradouro ja cadastrado
-        log = Logradouro.where(cep: cep, inicio: i, fim: f, lado: l, bairro: b, cidade: c)
+        log = Logradouro.where(cep: cep, inicio: i, fim: f, lado: l, bairro: b, cidade: c).first
 
         if log == nil
           puts Logradouro.create!(cep: cep, cidade: c, bairro: b, nome: n, inicio: i, fim: f, lado: l)
         else
-          puts ">>>> Já cadastrado #{log.cep}"
+          puts ">>>> Já cadastrado #{cep}"
         end
       end
     end
@@ -113,7 +121,8 @@ namespace :utils do
   desc "Povoa a tabela Endereços no Banco"  
     task setup_enderecos: :environment do
       puts "> Povoando Tabela Endereços..."
-      
+      puts "#{Endereco.all.size} encontrados"
+
       CSV.foreach('tmp/enderecos.csv', encoding:'iso-8859-1:utf-8', col_sep: ';').with_index do |linha, indice|
         unless (indice == 0)
 
@@ -129,7 +138,7 @@ namespace :utils do
           if log == nil
             puts "Criando novo logradouro..."
             c = Cidade.find_by(nome: "Teresina")
-            log = Logradouro.create!(cep: cep, nome: lNome, inicio: 0, fim: 99999, lado: "ambos", cidade: c, bairro: bairro)
+            log = Logradouro.create!(cep: cep, nome: lNome, inicio: 0, fim: 99999, lado: "Ambos", cidade: c, bairro: bairro)
             puts ">>> " + log.to_s
           end
 
@@ -141,7 +150,8 @@ namespace :utils do
     desc "Povoa a tabela Locais no Banco"  
     task setup_locais: :environment do
       puts "> Povoando Tabela Locais..."
-      
+      puts "#{Local.all.size} encontrados"
+
       CSV.foreach('tmp/locais.csv', encoding:'iso-8859-1:utf-8', col_sep: ';').with_index do |linha, indice|
         unless (indice == 0)
         
@@ -169,7 +179,8 @@ namespace :utils do
     desc "Povoa a tabela Coberturas no Banco"  
     task setup_coberturas: :environment do
       puts "> Povoando Tabela Coberturas..."
-      
+      puts "#{Cobertura.all.size} encontrados"
+
       CSV.foreach('tmp/coberturaOi.csv', encoding:'iso-8859-1:utf-8', col_sep: ';').with_index do |linha, indice|
         unless (indice == 0)
 

@@ -21,9 +21,7 @@
       <br/>
 
       <%= f.submit(:class => 'btn btn-default') %>
-      <%= link_to t('.new', :default => t("helpers.links.new")),
-                new_bairro_path,
-                :class => 'btn btn-primary' %>
+      <%= new_button(@model_class) %>
     </div>  
   </div>
 <% end %>

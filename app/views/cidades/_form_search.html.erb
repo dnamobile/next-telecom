@@ -1,4 +1,7 @@
 <%= search_form_for(@q, :class => "form-horizontal cidade") do |f| %>
+  
+  <%= hidden_field_tag 'page', '1', {class: 'ransack-page'} %>
+
   <div class="form-group">
     <%= f.label(:nome, "Nome", :class => 'control-label col-lg-2') %>
     <div class="col-lg-4">  
@@ -14,7 +17,7 @@
       <br/>
 
       <%= f.submit(:class => 'btn btn-default') %>
-      <%= new_button($model_class) %>
+      <%= new_button(@model_class) %>
     </div>  
   </div>
 <% end %>

@@ -1,49 +1,47 @@
-<hr/><h3><%=t '.title', :default => 'Bairros' %></h3>
+<% if !@field_class.blank? %>
+  <h3><%=t '.title', :default => @field_class.model_name.human.pluralize.titleize %></h3>
+<% end %>
 
 <div class="table-responsive-sm">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= "Nome" %></th>
-        <th><%= "Zona" %></th>
-        <th><%= "Cidade" %></th>
-       
         <% if @ref.blank? %>
+          <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:nome)) %></th>
+          <th><%= sort_link(@q, :zona, @model_class.human_attribute_name(:zona)) %></th>
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% else %>
+          <th><%= @model_class.human_attribute_name(:nome) %></th>
+          <th><%= @model_class.human_attribute_name(:zona) %></th>
         <% end %>
       </tr>
     </thead>
     <tbody>
-      <% if !@list.blank? %> 
-        <% @list.each do |item| %>          
-          <tr>  
-            <td>
-              <%= link_to item.nome, show_path(item), remote: true %>  
-              <div id="bairro_details" style="display:none">
-                  <% if item.blank? %>
-                    <%= render :partial => 'bairros/show_fields' %>
-                  <% end %>
-              </div>
-            </td>
-            
-            <td><%= item.zona %></td>
-            <td><%= link_to item.cidade.nome, show_path(item.cidade) %></td>
-            
-            <% if @ref.blank? %>
-              <td>
-                <%= edit_button_sm(item) %>
-                <%= delete_button_sm(item) %>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
-      <% else %>
-        <tr>
+      <% @list.each do |item| %>          
+        <tr>  
           <td>
-            <dl class="dl-horizontal">
-              <br/><dt><dd>Nenhum Bairro encontrado.</dd></dt>
-            </dl>
+            <%= link_to item.nome, show_path(item) %>  
+            <div id="bairro_details" style="display:none">
+                  <!--%= render :partial => 'bairros/show_fields' %-->
+            </div>
           </td>
+          
+          <td><%= item.zona %></td>
+          
+          <% if @ref.blank? %>
+            <td><%= link_to item.cidade.nome, show_path(item.cidade) %></td>
+            <td>
+              <%= edit_button_sm(item) %>
+              <%= delete_button_sm(item) %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      <% if @list.blank? %> 
+        <tr>
+          <tr>
+            <td><center>Nenhum(a) <%= @field_class %> encontrado(a).</center></td>
+          </tr>
         </tr>
       <% end %>
     </tbody>

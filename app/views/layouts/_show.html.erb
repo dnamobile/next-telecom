@@ -8,7 +8,8 @@
 
 <%= render :partial => 'show_fields' %>
 
-<% @field_classes.each do |@field_class| %>
+<% @field_classes.each do |f| %>
+  <% @field_class = f %>
   <%= render :partial => index_path(@field_class) + '/list' %>
 <% end %>
 

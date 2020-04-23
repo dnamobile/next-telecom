@@ -2,7 +2,7 @@ class BairrosController < ApplicationController
   
 
   def show
-    @list = @ref.logradouros
+    @list = @ref.logradouros.page(params[:page])
   end
 
   def set_field_classes

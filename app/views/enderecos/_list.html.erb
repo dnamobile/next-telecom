@@ -1,36 +1,44 @@
-<hr/><h3><%=t '.title', :default => 'Endereços' %></h3>
+<% if !@field_class.blank? %>
+  <h3><%=t '.title', :default => @field_class.model_name.human.pluralize.titleize %></h3>
+<% end %>
 
 <div class="table-responsive-sm">
   <table class="table table-striped">
     <thead>
       <tr>
-        <% if !@ref.blank? %>
+        <% if @ref.blank? %>
+          <th><%= sort_link(@q, :numero, @model_class.human_attribute_name(:numero)) %></th>
+          <th><%= sort_link(@q, :logradouro, @model_class.human_attribute_name(:logradouro)) %></th>
+          <th><%= @model_class.human_attribute_name(:complemento) %></th>
+          <th><%= sort_link(@q, :local, @model_class.human_attribute_name(:local)) %></th>
+          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% else %>
           <th><%= @model_class.human_attribute_name(:numero) %></th>
           <th><%= @model_class.human_attribute_name(:complemento) %></th>
-        <% else %>
-          <th><%= sort_link(@q, :numero, @model_class.human_attribute_name(:numero)) %></th>
-          <th><%= sort_link(@q, :complemento, @model_class.human_attribute_name(:complemento)) %></th>
-          <th><%=t '.actions', :default => t("helpers.actions") %></th>
+          <th><%= @model_class.human_attribute_name(:local) %></th>
         <% end %>
       </tr>
     </thead>
     <tbody>
-      <% if !@ref.enderecos.blank? %>
-        <% @ref.enderecos.each do |endereco| %>
-          <tr>
-            <td><%= link_to endereco.numero, endereco_path(endereco) %></td>
-            <td><%= endereco.complemento %></td>
-          </tr>
-        <% end %>
-      <% else %>
+      <% @list.each do |endereco| %>
         <tr>
+          <td><%= link_to endereco.numero, endereco_path(endereco) %></td>
+          <% if @ref.blank? %>
+            <td><%= link_to endereco.logradouro, logradouro_path(endereco.logradouro) %></td>            
+          <% end %>
+          <td><%= endereco.complemento %></td>
+          <td><%= endereco.local %></td>
           <td>
-            <dl class="dl-horizontal">
-              <br/><dt><dd>Nenhum Endereço encontrado.</dd></dt>
-            </dl>
-          </td>
+                <%= edit_button_sm(endereco) %>
+                <%= delete_button_sm(endereco) %>
+              </td>
         </tr>
-      <% end %>
+        <% end %>
+         <% if @list.blank? %> 
+            <tr>
+              <td><center>Nenhum(a) <%= @field_class %> encontrado(s).</center></td>
+            </tr>
+        <% end %>
     </tbody>
   </table>
 </div>
