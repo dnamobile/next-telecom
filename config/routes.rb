@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  get 'users/index'
+  
+  #controlers
   get 'consulta_cobertura/search'
+  
+  #cruds
+  resources :users
   resources :locals
   resources :coberturas
   resources :enderecos

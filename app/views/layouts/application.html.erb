@@ -41,76 +41,26 @@
   </head>
   <body>
 
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="<%= home_path %>">Next Telecom</a>
-        
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Consultar Cobertura", consulta_cobertura_search_path, :class => 'navbar-link' %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <%= render :partial => "layouts/menu_top" %>
 
     <div class="container">
       <div class="row">
+
         <div class="col-lg-9">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
 
-      <% if user_signed_in? %>
-          <div class="col-lg-3">
-            <div class="well sidebar-nav">
-              <h3>Cadastros</h3>
-              <ul class="nav nav-list">
-                <li><%= link_to  "Estados", estados_path %></li>
-                <li><%= link_to  "Cidades", cidades_path %></li>
-                <li><%= link_to  "Bairros", bairros_path %></li>
-                <li><%= link_to  "Logradouros", logradouros_path %></li>
-                <li><%= link_to  "Endereços", enderecos_path %></li>
-                <li><%= link_to  "Locais", locals_path %></li>
-                <li><%= link_to  "Coberturas", coberturas_path %></li>
-              </ul>
-            </div>
-          </div>
-        <% end %>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-              <% if user_signed_in? %>
-                <h3>Usuário</h3>
-                <h6><b><%= current_user.email %></b></h6>
-              <% else %>
-                <h3>Acesso</h3> 
-              <% end %>
-
-              <ul class="nav nav-list">
-                <% if user_signed_in? %>
-                  <li><%= link_to  "Editar", edit_user_registration_path, :class => 'navbar-link' %></li>
-                  <li><%= link_to  "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
-                <% else %>
-                  <li><%= link_to "Registrar", new_user_registration_path, :class => 'navbar-link'  %></li>
-                  <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-      </div><!--/row-->
+        <%= render :partial => "layouts/menu_user" %>
+        <%= render :partial => "layouts/menu_adm" %>
+      </div>
 
       <br/>
 
       <footer>
-        <hr/>
-        <p>&copy; DNA Mobile 2020 </p>
+        <hr/><p>&copy; DNA Mobile 2020 </p>
       </footer>
 
     </div> <!-- /container -->
-
   </body>
 </html>

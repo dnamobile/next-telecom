@@ -1,9 +1,6 @@
 class LocalsController < ApplicationController
   before_action :authenticate_user!
    
-  def set_field_classes
-    @field_classes = []    
-  end
 
   def set_model_class
     @model_class = Local  

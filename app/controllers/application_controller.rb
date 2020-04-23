@@ -48,7 +48,9 @@ class ApplicationController < ActionController::Base
     end
     
     def set_field_classes
+        @field_classes = [@model_class]    
     end
+    
 
     def update
         respond_to do |format|

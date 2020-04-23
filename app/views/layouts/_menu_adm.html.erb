@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+    <div class="col-lg-3">
+        <div class="well sidebar-nav">
+            <h3>Administração</h3>
+            <ul class="nav nav-list">
+                <li><%= link_to  "Usuários", users_path	 %></li>
+                <li><%= link_to  "Estados", estados_path %></li>
+                <li><%= link_to  "Cidades", cidades_path %></li>
+                <li><%= link_to  "Bairros", bairros_path %></li>
+                <li><%= link_to  "Logradouros", logradouros_path %></li>
+                <li><%= link_to  "Endereços", enderecos_path %></li>
+                <li><%= link_to  "Locais", locals_path %></li>
+                <li><%= link_to  "Coberturas", coberturas_path %></li>
+            </ul>
+        </div>
+    </div>
+<% end %>

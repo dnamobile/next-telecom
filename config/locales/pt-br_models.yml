@@ -8,33 +8,21 @@
       endereco: "Endereço"
       cobertura: "Cobertura"
       local: "Local"
+      user: "Usuário"
     attributes:
-      estado: 
-        id: "ID"
-        nome: "Nome"
-        uf: "UF"
-      cidade: 
-        id: "ID"
-        nome: "Nome"
-      bairro: 
-        id: "ID"
-        nome: "Nome"
       logradouro: 
-        id: "ID"
-        nome: "Nome"
         cep: "CEP"
       endereco: 
-        id: "ID"
         numero: "Número"
-        complemento: "Complemento"
       cobertura: 
-        id: "ID"
         vivo: "Vivo"
         net: "Net"
         oi: "Oi"
       local: 
-        id: "ID"
         nome: "Nome"
         atividade: "Atividade"
         qtde_blocos: "Blocos"
         qtde_lotes: "Lotes"
+      user:
+          password: "Senha"
+          created_at: "Data Criação"
