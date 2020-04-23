@@ -79,6 +79,7 @@ class ApplicationController < ActionController::Base
     
     def set_list
         if @q != nil
+            @list_size = @q.result.size
             @list = @q.result.page(params[:page])
         end 
     end 
