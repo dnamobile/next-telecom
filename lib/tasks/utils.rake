@@ -136,8 +136,7 @@ namespace :utils do
           bairro = Bairro.find_by(nome: b)
           
           #buscando logradouro ja cadastrado
-          puts "#{bairro} #{cep} #{c}"
-          log = Logradouro.where(cep: cep, bairro: bairro, cidade: c).first
+          log = Logradouro.where(cep: cep, bairro: bairro).first
           if log == nil
             puts "Criando novo logradouro..."
             puts Logradouro.create!(cep: cep, nome: lNome, inicio: 0, fim: 99999, lado: "Ambos", cidade: c, bairro: bairro)
