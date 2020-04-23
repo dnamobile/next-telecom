@@ -107,12 +107,13 @@ namespace :utils do
         end
 
         #buscando logradouro ja cadastrado
-        log = Logradouro.where(cep: cep, inicio: i, fim: f, lado: l, bairro: b, cidade: c).first
+        log = Logradouro.where(cep: cep, cidade: c, bairro: b, inicio: i, fim: f, lado: l).first
 
         if log == nil
+          puts bairro + " " + cep
           puts Logradouro.create!(cep: cep, cidade: c, bairro: b, nome: n, inicio: i, fim: f, lado: l)
         else
-          puts ">>>> Já cadastrado #{cep}"
+          puts ">>>> Logradouro Já cadastrado #{cep}"
         end
       end
     end
@@ -122,7 +123,8 @@ namespace :utils do
     task setup_enderecos: :environment do
       puts "> Povoando Tabela Endereços..."
       puts "#{Endereco.all.size} encontrados"
-
+      
+      c = Cidade.find_by(nome: "Teresina")
       CSV.foreach('tmp/enderecos.csv', encoding:'iso-8859-1:utf-8', col_sep: ';').with_index do |linha, indice|
         unless (indice == 0)
 
@@ -135,20 +137,19 @@ namespace :utils do
           bairro = Bairro.find_by(nome: b)
           
           #buscando logradouro ja cadastrado
-          log = Logradouro.where(cep: cep, bairro: bairro).first
+          log = Logradouro.where(cep: cep, nome: lnome, bairro: bairro, cidade: c).first
           if log == nil
             puts "Criando novo logradouro..."
-            c = Cidade.find_by(nome: "Teresina")
             puts Logradouro.create!(cep: cep, nome: lNome, inicio: 0, fim: 99999, lado: "Ambos", cidade: c, bairro: bairro)
           end
 
           #buscando endereco ja cadastrado
-          e = Endereco.where(logradouro: log, numero: numero, complemento: comp)
+          e = Endereco.where(logradouro: log, numero: numero, complemento: comp).first
           if e == nil
             puts "Criando novo endereco..."
             puts Endereco.create!(logradouro: log, numero: numero, complemento: comp)
           else
-            puts "Endereco ja cadastrado #{log.cep}"
+            puts ">>> Endereco ja cadastrado #{log.cep}"
           end
         end
       end
