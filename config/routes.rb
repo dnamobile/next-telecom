@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'consulta_cobertura/search'
   
   #cruds
-  resources :users
+  devise_for :users
   resources :locals
   resources :coberturas
   resources :enderecos
@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   resources :logradouros
   resources :bairros
   resources :cidades
+  resources :users
   
-  devise_for :users
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home#index' 

@@ -18,4 +18,5 @@ class EstadosController < ApplicationController
   def model_params
     params.require(:estado).permit(:nome, :uf)
   end
+  
 end

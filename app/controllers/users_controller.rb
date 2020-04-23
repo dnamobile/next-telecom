@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   def set_model_class
     @model_class = User  
   end
-    
+  
+  def model_params
+    params.require(:user).permit(:email, :role)
+  end
   
 end

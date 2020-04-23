@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     end
     
     def show
+
     end
     
     def edit
@@ -21,7 +22,7 @@ class ApplicationController < ActionController::Base
     end
     
     def create
-        @ref = @model_class.new(estado_params)
+        @ref = @model_class.new(model_params)
         
         respond_to do |format|
           if @ref.save
