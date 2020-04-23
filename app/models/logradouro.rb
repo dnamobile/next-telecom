@@ -21,6 +21,15 @@ class Logradouro < ApplicationRecord
         if l.cep != nil && !l.cep.eql(cep)
             return false
         end
+        if l.inicio != nil && !l.cep.eql(inicio)
+            return false
+        end
+        if l.fim != nil && !l.cep.eql(fim)
+            return false
+        end
+        if l.lado != nil && !l.cep.eql(lado)
+            return false
+        end
         return true
     end
 

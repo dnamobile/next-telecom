@@ -94,11 +94,18 @@ namespace :utils do
         end
 
         l = linha[7]
-        if l == nil
-          l = "ambos"
+        if l == nil? 
+          l = "Ambos"
         end
 
-        puts Logradouro.create!(cep: cep, cidade: c, bairro: b, nome: n, inicio: i, fim: f, lado: l)
+        #buscando logradouro ja cadastrado
+        log = Logradouro.where(cep: cep, bairro:bairro, inicio:inicio, fim:fim, lado:lado)
+
+        if log.first == nil
+          puts Logradouro.create!(cep: cep, cidade: c, bairro: b, nome: n, inicio: i, fim: f, lado: l)
+        else
+          puts ">>>> Já cadastrado #{log.cep}"
+        end
       end
     end
   end
