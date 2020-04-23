@@ -3,7 +3,7 @@ class Logradouro < ApplicationRecord
     belongs_to :bairro
     has_many :enderecos, inverse_of: :logradouro
 
-    validates :cep, presence: true, uniqueness: true
+    validates :cep, presence: true
     validates :nome, presence: true
     validates :cidade, presence: true
     validates :bairro, presence: true

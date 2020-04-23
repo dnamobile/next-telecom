@@ -128,7 +128,7 @@ namespace :utils do
         unless (indice == 0)
 
           cep = linha[0]
-          lNome = linha[1] != nil ? linha[1].swapcase : nil
+          lNome = linha[1] != nil ? linha[1] : nil
           numero = linha[2]
           comp = linha[3] != nil ? linha[3].swapcase : nil
           b = linha[4] != nil ? linha[4].swapcase : nil
