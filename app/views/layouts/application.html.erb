@@ -52,7 +52,13 @@
         </div>
 
         <%= render :partial => "layouts/menu_user" %>
-        <%= render :partial => "layouts/menu_adm" %>
+        
+        <% if current_user != nil && current_user.admin? %>
+          <%= render :partial => "layouts/menu_adm" %>
+        <% else %>
+          <%= render :partial => "layouts/menu_cliente" %>
+        <% end %>
+
       </div>
 
       <br/>

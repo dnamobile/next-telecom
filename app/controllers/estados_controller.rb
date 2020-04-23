@@ -1,4 +1,6 @@
 class EstadosController < ApplicationController
+  
+  #Garante que só será acessado com usuário logado
   before_action :authenticate_user!
 
   def show
