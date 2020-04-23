@@ -1,0 +1,41 @@
+<%= search_form_for(@q, :class => "form-horizontal local") do |f| %>
+  <div class="form-group">
+    <%= f.label(:endereco_logradouro_bairro_nome_cont, "Bairro", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-6">  
+      <%= f.search_field(:endereco_logradouro_bairro_nome_cont, placeholder: 'Bairro contém...', :class => 'form-control') %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label(:endereco_logradouro_cep_or_endereco_logradouro_nome_cont, "Logradouro", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-6">  
+      <%= f.search_field(:endereco_logradouro_cep_or_endereco_logradouro_nome_cont, placeholder: 'CEP ou Logradouro contém...', :class => 'form-control') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:endereco_numero_eq, "Número", :class => 'control-label col-lg-2') %>
+      <div class="col-lg-4">  
+        <%= f.search_field(:endereco_numero_eq, placeholder: 'Número é...', :class => 'form-control') %>  
+      </div>  
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:endereco_complemento_cont, "Complemento", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:endereco_complemento_cont, placeholder: 'Complemento contém...', :class => 'form-control') %>     
+      </div>  
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:atividade_cont, "Atividade", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:atividade_cont, placeholder: 'Atividade contém...', :class => 'form-control') %>   
+      
+      <br/>
+
+      <%= f.submit(:class => 'btn btn-default') %>
+      <%= new_button(@model_class) %>
+    </div>  
+  </div>
+<% end %>

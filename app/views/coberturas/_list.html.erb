@@ -1,20 +1,46 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= @model_class.human_attribute_name(:endereco) %></th>
-      <th><%= @model_class.human_attribute_name(:vivo) %></th>
-      <th><%= @model_class.human_attribute_name(:net) %></th>
-      <th><%= @model_class.human_attribute_name(:oi) %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @list.each do |item| %>
-      <tr>
-        <td><%= item.endereco %></td>
-        <td><%= item.vivo %></td>
-        <td><%= item.net %></td>
-        <td><%= item.oi %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<hr/>
+<% if !@field_class.blank? %>
+  <h3><%=t '.title', :default => @field_class.model_name.human.pluralize.titleize %></h3>
+<% end %>
+
+<div class="table-responsive-sm">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <% if @ref.blank? %>
+                <th><%= sort_link(@q, :endereco, @model_class.human_attribute_name(:endereco)) %></th>
+                <th><%= sort_link(@q, :vivo, @model_class.human_attribute_name(:vivo)) %></th>
+                <th><%= sort_link(@q, :net, @model_class.human_attribute_name(:net)) %></th>
+                <th><%= sort_link(@q, :oi, @model_class.human_attribute_name(:oi)) %></th>
+                <th><%=t '.actions', :default => t("helpers.actions") %></th>
+            <% else %>
+                <th><%= @model_class.human_attribute_name(:endereco) %></th>
+                <th><%= @model_class.human_attribute_name(:vivo) %></th>
+                <th><%= @model_class.human_attribute_name(:net) %></th>
+                <th><%= @model_class.human_attribute_name(:oi) %></th>
+            <% end %>
+        </tr>
+    </thead>
+    <tbody>
+        <% @list.each do |cob| %>
+            <tr>
+                <td><%= link_to cob.nome, index_path(cob) %></td>
+                <td><%= cob.vivo %></td>
+                <td><%= cob.net %></td>
+                <td><%= cob.oi %></td>
+                <% if @ref.blank? %>
+                    <td>
+                        <%= edit_button_sm(item) %>
+                        <%= delete_button_sm(item) %>
+                    </td>
+                <% end %>
+            </tr>
+        <% end %>
+        <% if @list.blank? %> 
+            <tr>
+                <td><center>Nenhum(a) <%= @field_class %> encontrado(a).</center></td>
+            </tr>
+      <% end %>
+    </tbody>
+    </table>
+</div>
