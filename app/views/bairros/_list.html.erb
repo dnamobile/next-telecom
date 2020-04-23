@@ -15,9 +15,7 @@
     </thead>
     <tbody>
       <% if !@list.blank? %> 
-        <% @list.each do |item| %>
-          
-          
+        <% @list.each do |item| %>          
           <tr>  
             <td>
               <%= link_to item.nome, show_path(item), remote: true %>  
