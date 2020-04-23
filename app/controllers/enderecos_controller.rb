@@ -1,5 +1,5 @@
 class EnderecosController < ApplicationController
-  
+  before_action :authenticate_user!
 
   def set_field_classes
     @field_classes = []    

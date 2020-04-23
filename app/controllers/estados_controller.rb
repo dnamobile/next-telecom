@@ -1,4 +1,5 @@
 class EstadosController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @list = @ref.cidades.page(params[:page])

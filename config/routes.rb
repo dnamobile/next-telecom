@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/index'
   get 'consulta_cobertura/search'
   resources :locals
   resources :coberturas

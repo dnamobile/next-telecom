@@ -139,7 +139,8 @@ namespace :utils do
           log = Logradouro.where(cep: cep, bairro: bairro).first
           if log == nil
             puts "Criando novo logradouro..."
-            puts Logradouro.create!(cep: cep, nome: lNome, inicio: 0, fim: 99999, lado: "Ambos", cidade: c, bairro: bairro)
+            log = Logradouro.create!(cep: cep, nome: lNome, inicio: 0, fim: 99999, lado: "Ambos", cidade: c, bairro: bairro)
+            puts = log
           end
 
           #buscando endereco ja cadastrado
@@ -148,7 +149,7 @@ namespace :utils do
             puts "Criando novo endereco..."
             puts Endereco.create!(logradouro: log, numero: numero, complemento: comp)
           else
-            puts ">>> Endereco ja cadastrado #{log.cep}"
+            puts ">>> Endereco ja cadastrado #{cep} #{numero}"
           end
         end
       end

@@ -53,16 +53,6 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to "Consultar Cobertura", consulta_cobertura_search_path, :class => 'navbar-link' %></li>
-            <% if user_signed_in? %>
-              
-              
-              <li><%= link_to  "Usuário", edit_user_registration_path, :class => 'navbar-link' %></li>
-              <li><%= link_to  "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
-            
-            <% else %>
-              <li><%= link_to "Registrar", new_user_registration_path, :class => 'navbar-link'  %></li>
-              <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-            <% end %>
           </ul>
         </div>
       </div>
@@ -88,10 +78,30 @@
                 <li><%= link_to  "Locais", locals_path %></li>
                 <li><%= link_to  "Coberturas", coberturas_path %></li>
               </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
+            </div>
+          </div>
+        <% end %>
+        <div class="col-lg-3">
+          <div class="well sidebar-nav">
+              <% if user_signed_in? %>
+                <h3>Usuário</h3>
+                <h6><b><%= current_user.email %></b></h6>
+              <% else %>
+                <h3>Acesso</h3> 
+              <% end %>
+
+              <ul class="nav nav-list">
+                <% if user_signed_in? %>
+                  <li><%= link_to  "Editar", edit_user_registration_path, :class => 'navbar-link' %></li>
+                  <li><%= link_to  "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
+                <% else %>
+                  <li><%= link_to "Registrar", new_user_registration_path, :class => 'navbar-link'  %></li>
+                  <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
       </div><!--/row-->
-      <% end %>
 
       <br/>
 

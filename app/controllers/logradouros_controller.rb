@@ -1,5 +1,6 @@
 class LogradourosController < ApplicationController
- 
+  before_action :authenticate_user!
+  
   def show
     @list = @ref.enderecos
   end

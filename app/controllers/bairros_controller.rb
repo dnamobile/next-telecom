@@ -1,5 +1,5 @@
 class BairrosController < ApplicationController
-  
+  before_action :authenticate_user!
 
   def show
     @list = @ref.logradouros.page(params[:page])

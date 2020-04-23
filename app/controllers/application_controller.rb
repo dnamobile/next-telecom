@@ -1,11 +1,10 @@
 class ApplicationController < ActionController::Base
+    
     before_action :set_model_class
     before_action :set_field_classes
     before_action :set_ransack, only: [:index, :search]
-    before_action :set_ref, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!    
+    before_action :set_ref, only: [:show, :edit, :update, :destroy]    
 
-    
     
     def index
        set_list
