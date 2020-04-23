@@ -133,16 +133,23 @@ namespace :utils do
           b = linha[4] != nil ? linha[4].swapcase : nil
           
           bairro = Bairro.find_by(nome: b)
-          log = Logradouro.find_by(cep: cep)
           
+          #buscando logradouro ja cadastrado
+          log = Logradouro.where(cep: cep, bairro: bairro).first
           if log == nil
             puts "Criando novo logradouro..."
             c = Cidade.find_by(nome: "Teresina")
-            log = Logradouro.create!(cep: cep, nome: lNome, inicio: 0, fim: 99999, lado: "Ambos", cidade: c, bairro: bairro)
-            puts ">>> " + log.to_s
+            puts Logradouro.create!(cep: cep, nome: lNome, inicio: 0, fim: 99999, lado: "Ambos", cidade: c, bairro: bairro)
           end
 
-          puts Endereco.create!(logradouro: log, numero: numero, complemento: comp)
+          #buscando endereco ja cadastrado
+          e = Endereco.where(logradouro: log, numero: numero, complemento: comp)
+          if e == nil
+            puts "Criando novo endereco..."
+            puts Endereco.create!(logradouro: log, numero: numero, complemento: comp)
+          else
+            puts "Endereco ja cadastrado #{log.cep}"
+          end
         end
       end
     end
