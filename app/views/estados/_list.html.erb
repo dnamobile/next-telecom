@@ -6,7 +6,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <% if @ref.blank? %>
+        <% if @ref.blank? && policy(@list).index?%>
             <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:nome)) %></th>
             <th><%= sort_link(@q, :uf, @model_class.human_attribute_name(:UF)) %></th>
             <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -23,7 +23,7 @@
             <td><%= link_to item.nome, show_path(item) %></td>
             <td><%= item.uf %></td>
             
-            <% if @ref.blank? %>
+            <% if @ref.blank? && policy(@list).index? %>
               <td>
                 <%= edit_button_sm(item) %>
                 <%= delete_button_sm(item) %>
