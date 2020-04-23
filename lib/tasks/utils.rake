@@ -99,7 +99,7 @@ namespace :utils do
         end
 
         #buscando logradouro ja cadastrado
-        log = Logradouro.where(cep: cep, inicio: inicio, fim: fim, lado: lado, bairro_id: bairro.id)
+        log = Logradouro.where(cep: cep, inicio: i, fim: f, lado: l, bairro: b, cidade: c)
 
         if log == nil
           puts Logradouro.create!(cep: cep, cidade: c, bairro: b, nome: n, inicio: i, fim: f, lado: l)
