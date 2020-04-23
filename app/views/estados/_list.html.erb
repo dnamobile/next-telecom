@@ -1,5 +1,5 @@
 <hr/>
-<h3><%=t '.title', :default => "Estados" %></h3>
+<h3><%=t '.title', :default => @field_class.model_name.human.pluralize.titleize %></h3>
 
 <div class="table-responsive-sm">
   <table class="table table-striped">
