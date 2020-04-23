@@ -36,6 +36,7 @@ gem 'coffee-script-source'
 #gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 #gem "therubyracer", :platform => :ruby
 
+#jquery
 gem 'jquery-rails'
 #gem 'jquery-ui-rails'
 

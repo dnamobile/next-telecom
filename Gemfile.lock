@@ -252,7 +252,6 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.7)
   jquery-rails
-  less-rails
   mysql2 (>= 0.4.4)
   paperclip (~> 6.0.0)
   pg
