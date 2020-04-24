@@ -106,14 +106,7 @@ namespace :utils do
           l = "Ambos"
         end
 
-        #buscando logradouro ja cadastrado
-        log = Logradouro.where(cep: cep, cidade: c, bairro: b, inicio: i, fim: f, lado: l).first
-
-        if log == nil
-          puts Logradouro.create!(cep: cep, cidade: c, bairro: b, nome: n, inicio: i, fim: f, lado: l)
-        else
-          puts ">>>> Logradouro Já cadastrado #{cep}"
-        end
+        MigrationUtils.save_logradouro(c, b, cep, n, i, f, l)
       end
     end
   end
@@ -136,21 +129,10 @@ namespace :utils do
           bairro = Bairro.find_by(nome: b)
           
           #buscando logradouro ja cadastrado
-          log = Logradouro.where(cep: cep, bairro: bairro).first
-          if log == nil
-            puts "Criando novo logradouro..."
-            log = Logradouro.create!(cep: cep, nome: lNome, inicio: 0, fim: 99999, lado: "Ambos", cidade: c, bairro: bairro)
-            puts = log
-          end
+          log = MigrationUtils.save_logradouro(c, b, cep, lNome, 0, 99999, "Ambos")
 
           #buscando endereco ja cadastrado
-          e = Endereco.where(logradouro: log, numero: numero, complemento: comp).first
-          if e == nil
-            puts "Criando novo endereco..."
-            puts Endereco.create!(logradouro: log, numero: numero, complemento: comp)
-          else
-            puts ">>> Endereco ja cadastrado #{cep} #{numero}"
-          end
+          MigrationUtils.save_endereco(log, numero, comp)
         end
       end
     end
@@ -170,15 +152,12 @@ namespace :utils do
           bl = linha[4].to_i
           lt = linha[5].to_i  
           
-          log = Logradouro.find_by(cep: cep)
-          e = Endereco.where(logradouro: log, numero: numero).first
+          #buscando logradouro ja cadastrado
+          log = MigrationUtils.save_logradouro(c, b, cep, lNome, 0, 99999, "Ambos")
 
-          if (log != nil && e == nil)
-            puts "Criando novo endereço..."
-            e = Endereco.create!(logradouro: log, numero: numero)
-            puts ">>> " + e.to_s
-          end
-          
+          #buscando endereco ja cadastrado
+          e = MigrationUtils.save_endereco(log, numero, comp)
+            
           puts Local.create!(endereco: e, nome: nome, atividade: atv, qtde_blocos: bl, qtde_lotes: lt)
         end
       end
