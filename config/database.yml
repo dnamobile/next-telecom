@@ -10,14 +10,18 @@
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
 default: &default
-  #adapter: postgresql
-  #encoding: unicode
-  adapter: mysql2
-  encoding: utf8mb4
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: laila3715
   host: localhost
+  
+  adapter: postgresql
+  username: postgres
+  password: laila3715
+  port: 5432
+
+  #adapter: mysql2
+  #username: root
+  #password: laila3715
 
 
 development:
@@ -51,11 +55,23 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: mysql2
-  encoding: utf8mb4
+  #adapter: mysql2
+  adapter: postgresql
+  port: 5432
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: us-cdbr-iron-east-01.cleardb.net
+  
+  #local
   #database: nexttelecom_prod
-  database: heroku_15d7472ff40c4ea
-  username: b77b44e6fa6f1f
-  password: 77dec673
+  
+  #Heroku PostgreSQL
+  host: ec2-3-223-21-106.compute-1.amazonaws.com
+  database: damkfrvlgfohna
+  username: jbkjbdkqdgbhhg
+  password: 577727747983b382bb2a9acd39b21b4cbd0bd9aec294e1e29bec617fffcce7e6
+
+  #Heroku Clear DB
+  #host: us-cdbr-iron-east-01.cleardb.net
+  #database: heroku_15d7472ff40c4ea
+  #username: b77b44e6fa6f1f
+  #password: 77dec673

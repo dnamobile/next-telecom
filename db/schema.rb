@@ -10,22 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_121258) do
+ActiveRecord::Schema.define(version: 2020_26_16_010436) do
 
-  create_table "atendimentos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "etapa"
-    t.datetime "data"
-    t.bigint "pessoa_id", null: false
-    t.bigint "endereco_id", null: false
-    t.string "operadora"
-    t.string "portfolio"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["endereco_id"], name: "index_atendimentos_on_endereco_id"
-    t.index ["pessoa_id"], name: "index_atendimentos_on_pessoa_id"
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
-  create_table "bairros", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "bairros", force: :cascade do |t|
     t.string "zona"
     t.string "nome"
     t.integer "qtde_habitantes"
@@ -38,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_121258) do
     t.index ["cidade_id"], name: "index_bairros_on_cidade_id"
   end
 
-  create_table "cidades", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "cidades", force: :cascade do |t|
     t.string "nome"
     t.bigint "estado_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -46,12 +36,14 @@ ActiveRecord::Schema.define(version: 2020_04_25_121258) do
     t.index ["estado_id"], name: "index_cidades_on_estado_id"
   end
 
-  create_table "cidades_logradouros", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "cidades_logradouros", id: false, force: :cascade do |t|
     t.bigint "cidade_id", null: false
     t.bigint "logradouro_id", null: false
+    t.index ["cidade_id", "logradouro_id"], name: "index_cidades_logradouros_on_cidade_id_and_logradouro_id"
+    t.index ["logradouro_id", "cidade_id"], name: "index_cidades_logradouros_on_logradouro_id_and_cidade_id"
   end
 
-  create_table "coberturas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "coberturas", force: :cascade do |t|
     t.integer "vivo"
     t.integer "net"
     t.integer "oi"
@@ -61,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_121258) do
     t.index ["endereco_id"], name: "index_coberturas_on_endereco_id"
   end
 
-  create_table "enderecos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "enderecos", force: :cascade do |t|
     t.string "numero"
     t.string "complemento"
     t.bigint "logradouro_id", null: false
@@ -70,14 +62,14 @@ ActiveRecord::Schema.define(version: 2020_04_25_121258) do
     t.index ["logradouro_id"], name: "index_enderecos_on_logradouro_id"
   end
 
-  create_table "estados", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "estados", force: :cascade do |t|
     t.string "nome"
     t.string "uf"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "locals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "locals", force: :cascade do |t|
     t.string "nome"
     t.string "atividade"
     t.integer "qtde_blocos"
@@ -88,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_121258) do
     t.index ["endereco_id"], name: "index_locals_on_endereco_id"
   end
 
-  create_table "logradouros", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "logradouros", force: :cascade do |t|
     t.string "cep"
     t.string "nome"
     t.integer "inicio"
@@ -102,33 +94,50 @@ ActiveRecord::Schema.define(version: 2020_04_25_121258) do
     t.index ["cidade_id"], name: "index_logradouros_on_cidade_id"
   end
 
-  create_table "pessoas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "nome"
-    t.string "telefone"
-    t.bigint "endereco_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "email"
-    t.index ["endereco_id"], name: "index_pessoas_on_endereco_id"
-    t.index ["user_id"], name: "index_pessoas_on_user_id"
-  end
-
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.integer "role"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "role", default: 0
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "atendimentos", "enderecos"
-  add_foreign_key "atendimentos", "pessoas"
+  create_table "pessoas", force: :cascade do |t|
+    t.string "nome"
+    t.string "telefone"
+    t.string "email"
+    t.bigint "endereco_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["endereco_id"], name: "index_enderecos_on_pessoa_id"
+    t.index ["user_id"], name: "index_users_on_pessoa_id"
+  end
+
+  create_table "atendimentos", force: :cascade do |t|
+    t.datetime "data"
+    t.string "etapa"
+    t.string "operadora"
+    t.string "portfolio"
+    t.bigint "endereco_id", null: false
+    t.bigint "pessoa_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["endereco_id"], name: "index_enderecos_on_atendimento_id"
+    t.index ["pessoa_id"], name: "index_pessoas_on_atendimento_id"
+  end
+
+
   add_foreign_key "bairros", "cidades"
   add_foreign_key "cidades", "estados"
   add_foreign_key "enderecos", "logradouros"
@@ -136,4 +145,6 @@ ActiveRecord::Schema.define(version: 2020_04_25_121258) do
   add_foreign_key "logradouros", "cidades"
   add_foreign_key "pessoas", "enderecos"
   add_foreign_key "pessoas", "users"
+  add_foreign_key "atendimentos", "enderecos"
+  add_foreign_key "atendimentos", "pessoas"
 end
