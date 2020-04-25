@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
     end
     
     def show
+        respond_to do |format|
+            format.js { }
+        end
         authorize @ref
     end
     
@@ -33,14 +36,14 @@ class ApplicationController < ActionController::Base
         @ref = @model_class.new(model_params)
         
         respond_to do |format|
-          if @ref.save
-            format.html { redirect_to @ref, notice: "#{@model_class.model_name} criado com sucesso." }
-            format.json { render :show, status: :created, location: @ref }
-            format.js
-          else
-            format.html { render :new }
-            format.json { render json: @ref.errors, status: :unprocessable_entity }
-            format.js
+            if @ref.save
+                format.html { redirect_to @ref, notice: "#{@model_class.model_name} criado com sucesso." }
+                format.json { render :show, status: :created, location: @ref }
+                format.js
+            else
+                format.html { render :new }
+                format.json { render json: @ref.errors, status: :unprocessable_entity }
+                format.js
             end
         end
         authorize @ref
@@ -60,9 +63,11 @@ class ApplicationController < ActionController::Base
             if @ref.update(model_params)
                 format.html { redirect_to @ref, notice: "#{@model_class.model_name} alterado com sucesso." }
                 format.json { render :show, status: :ok, location: @ref }
+                format.js {}
             else
                 format.html { render :edit }
                 format.json { render json: @ref.errors, status: :unprocessable_entity }
+                format.js {}
             end
         end
         authorize @ref

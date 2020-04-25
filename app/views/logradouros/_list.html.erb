@@ -9,8 +9,8 @@
         <% if @ref.blank? %>
           <th><%= sort_link(@q, :cep, @model_class.human_attribute_name(:cep)) %></th>
           <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:nome)) %></th>
-          <th><%= sort_link(@q, :cep, @model_class.human_attribute_name(:cidade)) %></th>
-          <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:bairro)) %></th>
+          <th><%= sort_link(@q, :cidade_nome, @model_class.human_attribute_name(:cidade)) %></th>
+          <th><%= sort_link(@q, :bairro_nome, @model_class.human_attribute_name(:bairro)) %></th>
           <th><%= @model_class.human_attribute_name(:inicio) %></th>
           <th><%= @model_class.human_attribute_name(:fim) %></th>
           <th><%= @model_class.human_attribute_name(:lado) %></th>
@@ -25,10 +25,9 @@
     <tbody>
         <% @list.each do |log| %>
           <tr>
-            <td><%= link_to log.cep, show_path(log) %></td>
-            <td><%= log.nome %></td>
-            
             <% if @ref.blank? %>
+              <td><%= link_to log.cep, show_path(log) %></td>
+              <td><%= log.nome %></td>
               <td><%= link_to log.cidade.nome, index_path(log.cidade) %></td>
               <td><%= link_to log.bairro.nome, index_path(log.bairro) %></td>
               <td><%= log.inicio %></td>
@@ -38,6 +37,16 @@
                 <%= edit_button_sm(log) %>
                 <%= delete_button_sm(log) %>
               </td>
+            <% else %>
+              <td>
+                <%= link_to log.cep, show_path(log), remote: true %>
+                <% @ref = log %>
+                <% @divName = "logradouro_details#{@ref.id}" %>
+                <div id="<%= @divName %>" style="display:none">
+                    <%= render :partial => 'logradouros/show_fields' %>
+                </div>
+              </td>
+              <td><%= log.nome %></td>
             <% end %>
           </tr>
           <% end %>

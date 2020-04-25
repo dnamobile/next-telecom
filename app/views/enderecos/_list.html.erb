@@ -22,16 +22,27 @@
     <tbody>
       <% @list.each do |endereco| %>
         <tr>
-          <td><%= link_to endereco.numero, endereco_path(endereco) %></td>
           <% if @ref.blank? %>
+            <td><%= link_to endereco.numero, endereco_path(endereco) %></td>
             <td><%= link_to endereco.logradouro, logradouro_path(endereco.logradouro) %></td>            
+            <td><%= endereco.complemento %></td>
+            <td><%= endereco.local %></td>
+            <td>
+              <%= edit_button_sm(endereco) %>
+              <%= delete_button_sm(endereco) %>
+            </td>
+          <% else %>
+            <td>
+              <%= link_to endereco.numero, endereco_path(endereco), remote: true %>
+              <% @ref = endereco %>
+              <% @divName = "endereco_details#{@ref.id}" %>
+              <div id="<%= @divName %>" style="display:none">
+                  <%= render :partial => 'enderecos/show_fields' %>
+              </div>
+              <td><%= endereco.complemento %></td>
+              <td><%= endereco.local %></td>
+            </td>
           <% end %>
-          <td><%= endereco.complemento %></td>
-          <td><%= endereco.local %></td>
-          <td>
-                <%= edit_button_sm(endereco) %>
-                <%= delete_button_sm(endereco) %>
-              </td>
         </tr>
         <% end %>
          <% if @list.blank? %> 

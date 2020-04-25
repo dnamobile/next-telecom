@@ -12,24 +12,27 @@
           <th><%=t '.actions', :default => t("helpers.actions") %></th>
         <% else %>
           <th><%= @model_class.human_attribute_name(:nome) %></th>
-          <th><%= @model_class.human_attribute_name(:estado) %></th>
         <% end %>
       </tr>
     </thead>
     <tbody>
         <% @list.each do |item| %>
           <tr>
-            <td>
-              <%= link_to item.nome, show_path(item) %>
-                <div id="cidade_details" style="display:none">
-                  <!--%= render :partial => 'cidades/show_fields' %-->
-                </div>
-            </td>
             <% if @ref.blank? %>
+              <td><%= link_to item.nome, show_path(item) %></td>
               <td><%= link_to item.estado.nome, show_path(item.estado) %></td>
               <td>
                 <%= edit_button_sm(item) %>
                 <%= delete_button_sm(item) %>
+              </td>
+            <% else %>
+              <td>
+                <%= link_to item.nome, show_path(item), remote: true %>
+                <% @ref = item %>
+                <% @divName = "cidade_details#{@ref.id}" %>
+                <div id="<%= @divName %>" style="display:none">
+                  <%= render :partial => "cidades/show_fields" %>
+                </div>
               </td>
             <% end %>
           </tr>
