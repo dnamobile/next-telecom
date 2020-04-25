@@ -39,7 +39,8 @@ namespace :utils do
       unless (indice == 0)
         nome = linha[0]
         uf = linha[1]
-        puts Estado.create!(nome: nome, uf: uf)
+
+        save_estado(nome, uf)
       end
     end  
   end
@@ -50,12 +51,10 @@ namespace :utils do
     puts "#{Cidade.all.size} encontrados"
 
     e = Estado.find_by(uf: "PI")
-    Cidade.create([
-      {nome: "Teresina", estado: e},
-      {nome: "Parnaíba", estado: e},
-      {nome: "Piripiri", estado: e}])
-    
-    puts Cidade.all
+
+    save_cidade(e, "Teresina")
+    save_cidade(e, "Parnaíba")
+    save_cidade(e, "Piripiri")
   end
 
   desc "Povoa a tabela Bairros no Banco"
@@ -71,7 +70,8 @@ namespace :utils do
         d = linha[3].to_i
         e = linha[4].to_i
         r = linha[5].to_f
-        Bairro.create!(zona: z, nome: n, qtde_habitantes: h, qtde_domicilios: d,  qtde_empresas: e, renda_media: r, cidade: c)
+
+        save_bairro(c, z, n, h, e, d, r)
       end
     end
         
@@ -176,6 +176,48 @@ namespace :utils do
       #setup_cobertura("vivo", "tmp/coberturaVivo.csv")
     end
 
+
+    #buscando estado ja cadastrado
+    def save_estado(nome, uf)
+      est = Estado.where(nome: nome, uf: uf).first
+      if est == nil
+        puts "Criando novo estado..."
+        est = Estado.create!(nome: nome, uf: uf)
+        puts est
+      else
+        puts ">>> Estado ja cadastrado #{nome} - #{uf}"
+      end
+      est
+    end
+
+    #buscando cidade ja cadastrado
+    def save_cidade(e, nome)
+      cid = Cidade.where(estado: e, nome: nome).first
+      if cid == nil
+        puts "Criando novo cidade..."
+        cid = Cidade.create!(estado: e, nome: nome)
+        puts cid
+      else
+        puts ">>> Cidade ja cadastrado #{nome} - #{e.uf}"
+      end
+      cid
+    end
+
+    #buscando bairro ja cadastrado
+    def save_bairro(c, zona, nome, hab, emp, dom, rm)
+      b = Bairro.where(cidade: c, zona: z, nome: nome, qtde_habitantes: hab, qtde_empresas: emp, 
+        qtde_domicilios: dom, renda_media: rm).first
+      
+      if b == nil
+        puts "Criando novo bairro..."
+        b = Bairro.create!(cidade: c, zona: z, nome: nome, qtde_habitantes: hab, qtde_empresas: emp, 
+        qtde_domicilios: dom, renda_media: rm)
+        puts b
+      else
+        puts ">>> Bairro ja cadastrado #{nome} - #{c.nome}"
+      end
+      b
+    end
 
     #buscando logradouro ja cadastrado
     def save_logradouro(c, b, cep, n, i, f, l)    
