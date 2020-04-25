@@ -27,7 +27,10 @@
       <br/>
 
       <%= f.submit(:class => 'btn btn-default') %>
-      <%= new_button(@model_class) %>
+      
+      <% if policy(Cobertura.new).new? %>
+        <%= new_button(@model_class) %>
+      <% end %>
     </div>  
   </div>
 <% end %>

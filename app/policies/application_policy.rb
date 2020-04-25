@@ -7,15 +7,15 @@ class ApplicationPolicy
   end
 
   def index?
-    @user.admin? 
+    !@user.blank? && @user.admin? 
   end
 
   def show?
-    @user.admin?
+    !@user.blank? && @user.admin?
   end
 
   def create?
-    @user.admin?
+    !@user.blank? && @user.admin?
   end
 
   def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    @user.admin?
+    !@user.blank? && @user.admin?
   end
 
   def edit?
@@ -31,7 +31,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    @user.admin?
   end
 
   class Scope

@@ -11,7 +11,10 @@
                 <th><%= sort_link(@q, :vivo, @model_class.human_attribute_name(:vivo)) %></th>
                 <th><%= sort_link(@q, :net, @model_class.human_attribute_name(:net)) %></th>
                 <th><%= sort_link(@q, :oi, @model_class.human_attribute_name(:oi)) %></th>
-                <th><%=t '.actions', :default => t("helpers.actions") %></th>
+               
+                <% if policy(@list).edit? && policy(@list).delete? %>
+                    <th><%=t '.actions', :default => t("helpers.actions") %></th>
+                <% end %>
             <% else %>
                 <th><%= @model_class.human_attribute_name(:endereco) %></th>
                 <th><%= @model_class.human_attribute_name(:vivo) %></th>
@@ -23,11 +26,19 @@
     <tbody>
         <% @list.each do |cob| %>
             <tr>
-                <td><%= link_to cob.endereco, show_path(cob.endereco) %></td>
+                <td>
+                    <%= link_to cob.endereco, show_path(cob.endereco), remote: true %>
+                    <!--% @ref = cob.endereco %-->
+                    <!--% @divName = "endereco_details#{@ref.id}" %-->
+                    <!--div id="<%= @divName %>" style="display:none"-->
+                        <!--%= render :partial => "enderecos/show_fields" %-->
+                    <!--/div-->
+                </td>
                 <td><%= parse(cob.vivo) %></td>
                 <td><%= parse(cob.net) %></td>
                 <td><%= parse(cob.oi) %></td>
-                <% if @ref.blank? %>
+                
+                <% if policy(@list).edit? && policy(@list).delete? %>
                     <td>
                         <%= edit_button_sm(cob) %>
                         <%= delete_button_sm(cob) %>
