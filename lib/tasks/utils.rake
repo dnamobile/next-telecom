@@ -204,7 +204,7 @@ namespace :utils do
     end
 
     #buscando bairro ja cadastrado
-    def save_bairro(c, zona, nome, hab, emp, dom, rm)
+    def save_bairro(c, z, nome, hab, emp, dom, rm)
       b = Bairro.where(cidade: c, zona: z, nome: nome, qtde_habitantes: hab, qtde_empresas: emp, 
         qtde_domicilios: dom, renda_media: rm).first
       
