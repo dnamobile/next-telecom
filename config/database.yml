@@ -69,9 +69,3 @@ production:
   database: damkfrvlgfohna
   username: jbkjbdkqdgbhhg
   password: 577727747983b382bb2a9acd39b21b4cbd0bd9aec294e1e29bec617fffcce7e6
-
-  #Heroku Clear DB
-  #host: us-cdbr-iron-east-01.cleardb.net
-  #database: heroku_15d7472ff40c4ea
-  #username: b77b44e6fa6f1f
-  #password: 77dec673
