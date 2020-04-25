@@ -65,7 +65,7 @@ production:
   #database: nexttelecom_prod
   
   #Heroku PostgreSQL
-  host: ec2-3-223-21-106.compute-1.amazonaws.com
-  database: damkfrvlgfohna
-  username: jbkjbdkqdgbhhg
-  password: 577727747983b382bb2a9acd39b21b4cbd0bd9aec294e1e29bec617fffcce7e6
+  host: ec2-34-202-7-83.compute-1.amazonaws.com
+  database: daeklk8aqabhf2
+  username: updfxvsovauasw
+  password: 2a48d2029a6b28678524980b6690cbdc7ef5b54e56cc24e399965b26c508227f
