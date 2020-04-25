@@ -21,13 +21,13 @@
     <tbody>
         <% @list.each do |local| %>
             <tr>
-                <td><%= link_to local.nome, index_path(local) %></td>
+                <td><%= link_to local.nome, show_path(local) %></td>
                 <td><%= local.atividade %></td>
-                <td><%= link_to local.endereco, index_path(local.endereco) %></td>
+                <td><%= link_to local.endereco, show_path(local.endereco) %></td>
                 <% if @ref.blank? %>
                     <td>
-                        <%= edit_button_sm(item) %>
-                        <%= delete_button_sm(item) %>
+                        <%= edit_button_sm(local) %>
+                        <%= delete_button_sm(local) %>
                     </td>
                 <% end %>
             </tr>

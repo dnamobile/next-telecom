@@ -1,8 +1,7 @@
 class Local < ApplicationRecord
     belongs_to :endereco
 
-    validates :nome, presence: true, uniqueness: true
-    validates :atividade, presence: true
+    validates :nome, presence: true
     validates :endereco, presence: true
 
     def eql(l) 

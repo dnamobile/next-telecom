@@ -1,10 +1,10 @@
 require 'csv'
 
 #Comando para rodar a migracao no bando produção
-#rake utils:setup_logradouros RAILS_ENV=production
+#rake utils:setup_locais RAILS_ENV=production
 
 namespace :utils do
-  
+
   desc "Limpa os dados das tabelas do Banco"
   task clear_data: :environment do
     puts "> Limpando Tabela Coberturas..."
@@ -106,7 +106,7 @@ namespace :utils do
           l = "Ambos"
         end
 
-        MigrationUtils.save_logradouro(c, b, cep, n, i, f, l)
+        save_logradouro(c, b, cep, n, i, f, l)
       end
     end
   end
@@ -129,10 +129,10 @@ namespace :utils do
           bairro = Bairro.find_by(nome: b)
           
           #buscando logradouro ja cadastrado
-          log = MigrationUtils.save_logradouro(c, b, cep, lNome, 0, 99999, "Ambos")
+          log = save_logradouro(c, b, cep, lNome, 0, 99999, "Ambos")
 
           #buscando endereco ja cadastrado
-          MigrationUtils.save_endereco(log, numero, comp)
+          save_endereco(log, numero, comp)
         end
       end
     end
@@ -142,6 +142,7 @@ namespace :utils do
       puts "> Povoando Tabela Locais..."
       puts "#{Local.all.size} encontrados"
 
+      c = Cidade.find_by(nome: "Teresina")
       CSV.foreach('tmp/locais.csv', encoding:'iso-8859-1:utf-8', col_sep: ';').with_index do |linha, indice|
         unless (indice == 0)
         
@@ -153,12 +154,17 @@ namespace :utils do
           lt = linha[5].to_i  
           
           #buscando logradouro ja cadastrado
-          log = MigrationUtils.save_logradouro(c, b, cep, lNome, 0, 99999, "Ambos")
+          #log = save_logradouro(c, b, cep, lNome, 0, 99999, "Ambos")
+          log = Logradouro.where(cep: cep, cidade: c).first
 
-          #buscando endereco ja cadastrado
-          e = MigrationUtils.save_endereco(log, numero, comp)
-            
-          puts Local.create!(endereco: e, nome: nome, atividade: atv, qtde_blocos: bl, qtde_lotes: lt)
+          if log != nil
+            #buscando endereco ja cadastrado
+            e = save_endereco(log, numero, nil)
+              
+            save_local(e, nome, atv, bl, lt)
+          else
+            puts ">>> Logradouro #{log} não encontrado <<<Local não salvo>>>"
+          end
         end
       end
     end
@@ -193,5 +199,45 @@ namespace :utils do
           puts Cobertura.create!(endereco: e, vivo: v, net: n, oi: o)
         end
       end
+    end
+
+
+    #buscando logradouro ja cadastrado
+    def self.save_logradouro(c, b, cep, n, i, f, l)    
+      log = Logradouro.where(cep: cep, cidade: c, bairro: b, inicio: i, fim: f, lado: l).first
+      if log == nil
+          puts "Criando novo logradouro..."
+          log = Logradouro.create!(cep: cep, cidade: c, bairro: b, nome: n, inicio: i, fim: f, lado: l)
+          puts log
+      else
+          puts ">>>> Logradouro Já cadastrado #{cep}"
+      end   
+      log
+    end
+ 
+     #buscando endereco ja cadastrado
+     def self.save_endereco(log, numero, comp) 
+        e = Endereco.where(logradouro: log, numero: numero, complemento: comp).first
+        if e == nil
+          puts "Criando novo endereco..."
+          e = Endereco.create!(logradouro: log, numero: numero, complemento: comp)
+          puts e
+        else
+          puts ">>> Endereco ja cadastrado #{log.cep} #{numero}"
+        end
+        e
+     end
+
+     #buscando endereco ja cadastrado
+     def self.save_local(e, nome, atv, bl, lt)
+        local = Local.where(endereco: e, nome: nome, atividade: atv).first
+        if local == nil
+          puts "Criando novo local..."
+          local = Local.create!(endereco: e, nome: nome, atividade: atv)
+          puts local
+        else
+          puts ">>> Local ja cadastrado #{nome} - #{e}"
+        end
+        e
     end
   end
