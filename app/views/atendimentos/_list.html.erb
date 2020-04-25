@@ -7,14 +7,16 @@
     <thead>
       <tr>
         <% if @ref.blank? && policy(@list).index?%>
-            <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:nome)) %></th>
-            <th><%= sort_link(@q, :telefone, @model_class.human_attribute_name(:telefone)) %></th>
-            <th><%= sort_link(@q, :email, @model_class.human_attribute_name(:email)) %></th>
+            <th><%= sort_link(@q, :data, @model_class.human_attribute_name(:data)) %></th>
+            <th><%= sort_link(@q, :etapa, @model_class.human_attribute_name(:etapa)) %></th>
+            <th><%= sort_link(@q, :operadora, @model_class.human_attribute_name(:operdora)) %></th>
+            <th><%= sort_link(@q, :portfolio, @model_class.human_attribute_name(:portfolio)) %></th>
             <th><%=t '.actions', :default => t("helpers.actions") %></th>
         <% else %>
-          <th><%= @model_class.human_attribute_name(:nome) %></th>
-          <th><%= @model_class.human_attribute_name(:telefone) %></th>
-          <th><%= @model_class.human_attribute_name(:email) %></th>
+          <th><%= @model_class.human_attribute_name(:data) %></th>
+          <th><%= @model_class.human_attribute_name(:etapa) %></th>
+          <th><%= @model_class.human_attribute_name(:operadora) %></th>
+          <th><%= @model_class.human_attribute_name(:portfolio) %></th>
         <% end %>
       </tr>
     </thead>
@@ -22,10 +24,11 @@
     <tbody>
       <% @list.each do |item| %>    
         <tr>
-            <td><%= link_to item.nome, show_path(item) %></td>
-            <td><%= item.telefone %></td>
-            <td><%= item.emaily %></td>
-            
+            <td><%= link_to item.data, show_path(item) %></td>
+            <td><%= item.etapa %></td>
+            <td><%= item.operadora %></td>
+            <td><%= item.portfolio %></td>
+
             <% if @ref.blank? && policy(@list).index? %>
               <td>
                 <%= edit_button_sm(item) %>

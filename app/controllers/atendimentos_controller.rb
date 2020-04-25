@@ -1,74 +1,32 @@
-class AtendimentosController < ApplicationController
-  before_action :set_atendimento, only: [:show, :edit, :update, :destroy]
+class EnderecosController < ApplicationController
+  before_action :authenticate_user!
 
-  # GET /atendimentos
-  # GET /atendimentos.json
-  def index
-    @atendimentos = Atendimento.all
-  end
-
-  # GET /atendimentos/1
-  # GET /atendimentos/1.json
-  def show
-  end
-
-  # GET /atendimentos/new
   def new
-    @atendimento = Atendimento.new
+    @ref = @model_class.new
+    @ref.build_pessoa
+    authorize @ref
   end
-
-  # GET /atendimentos/1/edit
+  
   def edit
-  end
-
-  # POST /atendimentos
-  # POST /atendimentos.json
-  def create
-    @atendimento = Atendimento.new(atendimento_params)
-
-    respond_to do |format|
-      if @atendimento.save
-        format.html { redirect_to @atendimento, notice: 'Atendimento was successfully created.' }
-        format.json { render :show, status: :created, location: @atendimento }
-      else
-        format.html { render :new }
-        format.json { render json: @atendimento.errors, status: :unprocessable_entity }
-      end
+    if @ref.pessoa.blank?
+      @ref.build_pessoa
     end
-  end
-
-  # PATCH/PUT /atendimentos/1
-  # PATCH/PUT /atendimentos/1.json
-  def update
-    respond_to do |format|
-      if @atendimento.update(atendimento_params)
-        format.html { redirect_to @atendimento, notice: 'Atendimento was successfully updated.' }
-        format.json { render :show, status: :ok, location: @atendimento }
-      else
-        format.html { render :edit }
-        format.json { render json: @atendimento.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /atendimentos/1
-  # DELETE /atendimentos/1.json
-  def destroy
-    @atendimento.destroy
-    respond_to do |format|
-      format.html { redirect_to atendimentos_url, notice: 'Atendimento was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    authorize @ref
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_atendimento
-      @atendimento = Atendimento.find(params[:id])
+  
+    def set_field_classes
+      @field_classes = []    
     end
 
-    # Only allow a list of trusted parameters through.
-    def atendimento_params
-      params.require(:atendimento).permit(:etapa, :data, :pessoa_id, :endereco_id, :operadora, :portfolio)
+    def set_model_class
+      @model_class = Atendimento  
+    end
+  
+    def model_params
+      params.require(:atendimento)
+        .permit(:pessoa, :endereco, :data, :etapa, :operadora, :portfolio,
+          pessoa_attributes: [:nome, :telefone, :email])
     end
 end

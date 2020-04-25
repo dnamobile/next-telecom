@@ -1,0 +1,38 @@
+<%= search_form_for(@q, :class => "form-horizontal atendimento") do |f| %>
+  
+  <%= hidden_field_tag 'page', '1', {class: 'ransack-page'} %>
+  
+  <div class="form-group">
+    <%= f.label(:data_cont, "Data", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:data_cont, placeholder: 'Data contém...', :class => 'form-control') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:etapa_cont, "Etapa", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:etapa_cont, placeholder: 'Etapa contém...', :class => 'form-control') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:operadora_cont, "Operadora", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:operadora_cont, placeholder: 'Operadora contém...', :class => 'form-control') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:portfolio_cont, "Portfólio", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:portfolio_cont, placeholder: 'Portfólio contém...', :class => 'form-control') %>  
+      
+      <br/>
+
+      <%= f.submit(:class => 'btn btn-default') %>
+      <%= new_button(@model_class) %>
+    </div>  
+    
+  </div>
+<% end %>

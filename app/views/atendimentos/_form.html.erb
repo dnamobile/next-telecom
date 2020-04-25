@@ -1,47 +1,44 @@
-<%= form_with(model: atendimento, local: true) do |form| %>
-  <% if atendimento.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(atendimento.errors.count, "error") %> prohibited this atendimento from being saved:</h2>
+<%= form_for @ref, :html => { :class => "form-horizontal estado" } do |f| %>
 
-      <ul>
-        <% atendimento.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= render :partial => '/layouts/message_box' %>
+
+  <div class="form-group">
+    <%= f.label :data, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.date_field :data, :class => 'form-control' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :etapa %>
-    <%= form.text_field :etapa %>
+    <%=f.error_span(:data) %>
   </div>
 
-  <div class="field">
-    <%= form.label :data %>
-    <%= form.datetime_select :data %>
+  <div class="form-group">
+    <%= f.label :etapa, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.text_field :etapa, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:etapa) %>
   </div>
 
-  <div class="field">
-    <%= form.label :pessoa_id %>
-    <%= form.text_field :pessoa_id %>
+  <div class="form-group">
+    <%= f.label :operadora, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.text_field :operadora, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:operadora) %>
   </div>
 
-  <div class="field">
-    <%= form.label :endereco_id %>
-    <%= form.text_field :endereco_id %>
+  <div class="form-group">
+    <%= f.label :portfolio, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.text_field :portfolio, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:portfolio) %>
   </div>
 
-  <div class="field">
-    <%= form.label :operadora %>
-    <%= form.text_field :operadora %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= cancel_button(@model_class) %>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :portfolio %>
-    <%= form.text_field :portfolio %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
