@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_180903) do
+ActiveRecord::Schema.define(version: 2020_04_25_121258) do
+
+  create_table "atendimentos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "etapa"
+    t.datetime "data"
+    t.bigint "pessoa_id", null: false
+    t.bigint "endereco_id", null: false
+    t.string "operadora"
+    t.string "portfolio"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["endereco_id"], name: "index_atendimentos_on_endereco_id"
+    t.index ["pessoa_id"], name: "index_atendimentos_on_pessoa_id"
+  end
 
   create_table "bairros", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "zona"
@@ -89,6 +102,18 @@ ActiveRecord::Schema.define(version: 2020_04_23_180903) do
     t.index ["cidade_id"], name: "index_logradouros_on_cidade_id"
   end
 
+  create_table "pessoas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "nome"
+    t.string "telefone"
+    t.bigint "endereco_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "email"
+    t.index ["endereco_id"], name: "index_pessoas_on_endereco_id"
+    t.index ["user_id"], name: "index_pessoas_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -97,14 +122,18 @@ ActiveRecord::Schema.define(version: 2020_04_23_180903) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "role", default: 1
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "atendimentos", "enderecos"
+  add_foreign_key "atendimentos", "pessoas"
   add_foreign_key "bairros", "cidades"
   add_foreign_key "cidades", "estados"
   add_foreign_key "enderecos", "logradouros"
   add_foreign_key "logradouros", "bairros"
   add_foreign_key "logradouros", "cidades"
+  add_foreign_key "pessoas", "enderecos"
+  add_foreign_key "pessoas", "users"
 end

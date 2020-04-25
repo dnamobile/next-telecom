@@ -1,0 +1,44 @@
+<% if !@field_class.blank? %>
+  <h3><%=t '.title', :default => @field_class.model_name.human.pluralize.titleize %></h3>
+<% end %>
+
+<div class="table-responsive-sm">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% if @ref.blank? && policy(@list).index?%>
+            <th><%= sort_link(@q, :nome, @model_class.human_attribute_name(:nome)) %></th>
+            <th><%= sort_link(@q, :telefone, @model_class.human_attribute_name(:telefone)) %></th>
+            <th><%= sort_link(@q, :email, @model_class.human_attribute_name(:email)) %></th>
+            <th><%=t '.actions', :default => t("helpers.actions") %></th>
+        <% else %>
+          <th><%= @model_class.human_attribute_name(:nome) %></th>
+          <th><%= @model_class.human_attribute_name(:telefone) %></th>
+          <th><%= @model_class.human_attribute_name(:email) %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @list.each do |item| %>    
+        <tr>
+            <td><%= link_to item.nome, show_path(item) %></td>
+            <td><%= item.telefone %></td>
+            <td><%= item.email %></td>
+            
+            <% if @ref.blank? && policy(@list).index? %>
+              <td>
+                <%= edit_button_sm(item) %>
+                <%= delete_button_sm(item) %>
+              </td>
+            <% end %>
+        </tr>
+      <% end %>
+      <% if @list.blank? %> 
+        <tr>
+          <td><center>Nenhum(a) <%= @field_class %> encontrado(a).</center></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

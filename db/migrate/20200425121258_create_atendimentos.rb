@@ -1,5 +1,5 @@
 class CreateAtendimentos < ActiveRecord::Migration[6.0]
-  def change
+  def self.change
     create_table :atendimentos do |t|
       t.string :etapa
       t.datetime :data

@@ -1,0 +1,31 @@
+<%= search_form_for(@q, :class => "form-horizontal pessoa") do |f| %>
+  
+  <%= hidden_field_tag 'page', '1', {class: 'ransack-page'} %>
+  
+  <div class="form-group">
+    <%= f.label(:nome_cont, "Nome", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:nome_cont, placeholder: 'Nome contém...', :class => 'form-control') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:telefone_cont, "Telefone", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:telefone_cont, placeholder: 'Telefone contém...', :class => 'form-control') %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:email_cont, "Email", :class => 'control-label col-lg-2') %>
+    <div class="col-lg-4">  
+      <%= f.search_field(:telefone_cont, placeholder: 'Email contém...', :class => 'form-control') %>  
+      
+      <br/>
+
+      <%= f.submit(:class => 'btn btn-default') %>
+      <%= new_button(@model_class) %>
+    </div>  
+    
+  </div>
+<% end %>

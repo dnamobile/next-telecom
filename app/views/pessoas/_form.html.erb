@@ -1,37 +1,36 @@
-<%= form_with(model: pessoa, local: true) do |form| %>
-  <% if pessoa.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(pessoa.errors.count, "error") %> prohibited this pessoa from being saved:</h2>
+<%= form_for @ref, :html => { :class => "form-horizontal estado" } do |f| %>
 
-      <ul>
-        <% pessoa.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= render :partial => '/layouts/message_box' %>
+
+  <div class="form-group">
+    <%= f.label :nome, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-6">
+      <%= f.text_field :nome, :class => 'form-control' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
+    <%=f.error_span(:nome) %>
   </div>
 
-  <div class="field">
-    <%= form.label :telefone %>
-    <%= form.text_field :telefone %>
+  <div class="form-group">
+    <%= f.label :telefone, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.phone_field :telefone, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:telefone) %>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="form-group">
+    <%= f.label :email, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-2">
+      <%= f.email_field :email, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:email) %>
   </div>
 
-  <div class="field">
-    <%= form.label :endereco_id %>
-    <%= form.text_field :endereco_id %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= cancel_button(@model_class) %>
   </div>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
