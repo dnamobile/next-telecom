@@ -39,7 +39,7 @@ Norte;Acarape;3018;806;109;3510
 Norte;Matadouro;5530;1466;209;1020
 Norte;Parque Alvorada;5387;1382;192;1020
 Norte;São Joaquim;10558;2648;342;1020
-Norte;Nova Brasilia;6780;1761;125;900
+Norte;Nova Brasília;6780;1761;125;900
 Norte;Aeroporto;7567;2078;536;1908
 Norte;Primavera;9102;2387;400;1530
 Norte;Morro da Esperança;3344;843;63;1020
@@ -48,7 +48,7 @@ Sul;Cristo Rei;8474;2716;341;2400
 Sul;Vermelha;5659;1570;1029;2000
 Sul;Nossa Senhora das Graças;3964;1098;341;2010
 Sul;São Pedro;8780;2318;450;1310
-Sul;PIO XII;2395;687;198;1520
+Sul;Pio XII;2395;687;198;1520
 Sul;Macaúba;5925;1675;321;2110
 Sul;Monte Castelo;10981;2861;445;1600
 Sul;Cidade Nova;3336;987;267;1850
@@ -123,3 +123,4 @@ Sudeste;Verde Cap;1612;433;9;644
 Leste;São Cristóvão;6592;1886;925;6005
 Leste;Jóquei;5967;1764;1730;10000
 Centro;Centro;12180;2456;6759;3000
+Norte;Vila São Francisco;;;;
