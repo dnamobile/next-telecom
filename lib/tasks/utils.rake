@@ -123,13 +123,13 @@ namespace :utils do
           cep = linha[0]
           lNome = linha[1] != nil ? linha[1] : nil
           numero = linha[2]
-          comp = linha[3] != nil ? linha[3].swapcase : nil
-          b = linha[4] != nil ? linha[4].swapcase : nil
+          comp = linha[3] != nil ? linha[3].swapcase.camelize : nil
+          b = linha[4] != nil ? linha[4].downcase : nil
           
-          bairro = Bairro.find_by(nome: b)
+          bairro = Bairro.find_by('lower(nome) = ?', b)
           
           #buscando logradouro ja cadastrado
-          log = save_logradouro(c, b, cep, lNome, 0, 99999, "Ambos")
+          log = save_logradouro(c, bairro, cep, lNome, 0, 99999, "Ambos")
 
           #buscando endereco ja cadastrado
           save_endereco(log, numero, comp)
