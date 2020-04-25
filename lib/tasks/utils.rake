@@ -171,39 +171,14 @@ namespace :utils do
 
     desc "Povoa a tabela Coberturas no Banco"  
     task setup_coberturas: :environment do
-      puts "> Povoando Tabela Coberturas..."
-      puts "#{Cobertura.all.size} encontrados"
-
-      CSV.foreach('tmp/coberturaOi.csv', encoding:'iso-8859-1:utf-8', col_sep: ';').with_index do |linha, indice|
-        unless (indice == 0)
-
-          cep = linha[0]
-          numero = linha[1]
-          comp = linha[2] != nil ? linha[2].swapcase : nil
-          
-          o = linha[3].to_i;
-          o != nil ? o : 0;
-
-          v = 0;
-          n = 0;  
-
-          log = Logradouro.find_by(cep: cep)
-          e = Endereco.where(logradouro: log, numero: numero, complemento: comp).first
-
-          if (log != nil && e == nil)
-            puts "Criando novo endereço..."
-            e = Endereco.create!(logradouro: log, numero: numero, complemento: comp)
-            puts ">>> " + e.to_s
-          end
-          
-          puts Cobertura.create!(endereco: e, vivo: v, net: n, oi: o)
-        end
-      end
+      setup_cobertura("oi", "tmp/coberturaOi.csv")
+      #setup_cobertura("net", "tmp/coberturaNet.csv")
+      #setup_cobertura("vivo", "tmp/coberturaVivo.csv")
     end
 
 
     #buscando logradouro ja cadastrado
-    def self.save_logradouro(c, b, cep, n, i, f, l)    
+    def save_logradouro(c, b, cep, n, i, f, l)    
       log = Logradouro.where(cep: cep, cidade: c, bairro: b, inicio: i, fim: f, lado: l).first
       if log == nil
           puts "Criando novo logradouro..."
@@ -216,7 +191,7 @@ namespace :utils do
     end
  
      #buscando endereco ja cadastrado
-     def self.save_endereco(log, numero, comp) 
+     def save_endereco(log, numero, comp) 
         e = Endereco.where(logradouro: log, numero: numero, complemento: comp).first
         if e == nil
           puts "Criando novo endereco..."
@@ -228,8 +203,8 @@ namespace :utils do
         e
      end
 
-     #buscando endereco ja cadastrado
-     def self.save_local(e, nome, atv, bl, lt)
+     #buscando local ja cadastrado
+     def save_local(e, nome, atv, bl, lt)
         local = Local.where(endereco: e, nome: nome, atividade: atv).first
         if local == nil
           puts "Criando novo local..."
@@ -239,5 +214,54 @@ namespace :utils do
           puts ">>> Local ja cadastrado #{nome} - #{e}"
         end
         e
+      end
+
+      #buscando cobertura ja cadastrada
+     def save_cobertura(e, op, c)
+      cob = Cobertura.where(endereco: e).first
+      v = (op == 'vivo') ? c : nil;
+      o = (op == 'oi') ? c : nil;
+      n = (op == 'net') ? c : nil;
+      
+      if cob == nil
+        puts "Criando nova Cobertura..."
+        
+        cob = Cobertura.create!(endereco: e, vivo: v, net: n, oi: o)
+        puts cob
+      else
+        puts ">>> Atualizando Cobertura cadastrada #{e}"
+        if (op == 'vivo') 
+          cob.vivo = c
+        end
+        if (op == 'oi') 
+          cob.oi = c
+        end
+        if (op == 'net') 
+          cob.net = c
+        end
+        cob.save
+      end
+      cob
+    end
+
+    def setup_cobertura(op, file)
+      puts "> Povoando Tabela Coberturas para #{op}..."
+      puts "#{Cobertura.all.size} encontrados"
+
+      CSV.foreach(file, encoding:'iso-8859-1:utf-8', col_sep: ';').with_index do |linha, indice|
+        unless (indice == 0)
+
+          cep = linha[0]
+          numero = linha[1]
+          comp = linha[2] != nil ? linha[2].swapcase : nil
+          
+          c = linha[3].to_i;
+
+          log = Logradouro.find_by(cep: cep)
+          e = save_endereco(log, numero, comp)
+          
+          save_cobertura(e, op, c)
+        end
+      end
     end
   end

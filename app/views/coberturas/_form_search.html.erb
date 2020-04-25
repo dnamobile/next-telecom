@@ -26,7 +26,8 @@
       <%= f.search_field(:endereco_complemento_cont, placeholder: 'Complemento contém...', :class => 'form-control') %>  
       <br/>
 
-      <%= f.submit(:class => 'btn btn-primary') %>
+      <%= f.submit(:class => 'btn btn-default') %>
+      <%= new_button(@model_class) %>
     </div>  
   </div>
 <% end %>

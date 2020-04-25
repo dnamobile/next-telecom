@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  etapa: MyString
+  data: 2020-04-25 09:12:58
+  pessoa: one
+  endereco: one
+  operadora: MyString
+  portfolio: MyString
+
+two:
+  etapa: MyString
+  data: 2020-04-25 09:12:58
+  pessoa: two
+  endereco: two
+  operadora: MyString
+  portfolio: MyString

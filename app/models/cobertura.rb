@@ -2,9 +2,6 @@ class Cobertura < ApplicationRecord
     belongs_to :endereco
     
     validates :endereco, presence: true, uniqueness: true
-    validates :vivo, numericality: true
-    validates :net, numericality: true
-    validates :oi, numericality: true
 
 
     def eql(c)

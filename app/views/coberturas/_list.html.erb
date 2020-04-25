@@ -23,14 +23,14 @@
     <tbody>
         <% @list.each do |cob| %>
             <tr>
-                <td><%= link_to cob.nome, index_path(cob) %></td>
-                <td><%= cob.vivo %></td>
-                <td><%= cob.net %></td>
-                <td><%= cob.oi %></td>
+                <td><%= link_to cob.endereco, index_path(cob) %></td>
+                <td><%= parse(cob.vivo) %></td>
+                <td><%= parse(cob.net) %></td>
+                <td><%= parse(cob.oi) %></td>
                 <% if @ref.blank? %>
                     <td>
-                        <%= edit_button_sm(item) %>
-                        <%= delete_button_sm(item) %>
+                        <%= edit_button_sm(cob) %>
+                        <%= delete_button_sm(cob) %>
                     </td>
                 <% end %>
             </tr>
