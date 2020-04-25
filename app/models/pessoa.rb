@@ -2,7 +2,7 @@ class Pessoa < ApplicationRecord
   
   belongs_to :endereco
   belongs_to :user
-  has_many :atendimentos, inverse_of: pessoa
+  has_many :atendimentos
 
   validates :nome, presence: true
   validates :telefone, presence: true
