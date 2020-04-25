@@ -8,7 +8,7 @@ class ConsultaCoberturaController < ApplicationController
   
   private
     def set_field_classes
-      @field_classes = [Cobertura]    
+      @field_classes = []    
     end
 
     def set_model_class

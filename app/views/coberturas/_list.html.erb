@@ -23,7 +23,7 @@
     <tbody>
         <% @list.each do |cob| %>
             <tr>
-                <td><%= link_to cob.endereco, index_path(cob) %></td>
+                <td><%= link_to cob.endereco, show_path(cob.endereco) %></td>
                 <td><%= parse(cob.vivo) %></td>
                 <td><%= parse(cob.net) %></td>
                 <td><%= parse(cob.oi) %></td>
