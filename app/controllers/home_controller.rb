@@ -3,11 +3,6 @@ class HomeController < ApplicationController
     
     def index
         @appName = "Next Telecom"
-        
-        @pessoa = Pessoa.where(user: @user).first
-        if @pessoa.blank?
-            @pessoa = Pessoa.new()
-        end
     end
 
     private

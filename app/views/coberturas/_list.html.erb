@@ -38,12 +38,14 @@
                 <td><%= parse(cob.net) %></td>
                 <td><%= parse(cob.oi) %></td>
                 
-                <% if policy(@list).edit? && policy(@list).delete? %>
-                    <td>
+                <td>
+                    <% if policy(@list).edit?%>    
                         <%= edit_button_sm(cob) %>
+                    <% end %>
+                    <% if policy(@list).destroy? %>
                         <%= delete_button_sm(cob) %>
-                    </td>
-                <% end %>
+                    <% end %>
+                </td>
             </tr>
         <% end %>
         <% if @list.blank? %> 
